@@ -68,9 +68,9 @@ public class TankMovement : MonoBehaviour
         m_TureValue = Input.GetAxis(m_TurnAxis);
 
         //每次输入都将改变坦克运行状态，所以都要进行状态判定来确定播放的音频
-        //播放引擎声音
-        EnginePlay();
-        Debug.Log("awda");
+        //播放引擎声音 TODO
+        //EnginePlay();
+        
     }
 
 
@@ -103,7 +103,7 @@ public class TankMovement : MonoBehaviour
                 m_MoveSound.clip = m_EngineQuiet;
                 m_MoveSound.pitch = Random.Range(m_SonudStar - m_PitchRange, m_SonudStar + m_PitchRange);
                 m_MoveSound.Play();
-                Debug.Log("awda");
+                
 
             }
         }

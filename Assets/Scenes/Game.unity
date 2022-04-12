@@ -215,7 +215,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7533890}
   m_CullTransparentMesh: 0
---- !u!1001 &211171321
+--- !u!1001 &247234040
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -521,11 +521,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &1215008484 stripped
+--- !u!4 &1069494359 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1676515232765691307, guid: b7ef53dae4e7f3346a22fc4cf8e691d2,
     type: 3}
-  m_PrefabInstance: {fileID: 211171321}
+  m_PrefabInstance: {fileID: 247234040}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1271485962
 GameObject:
@@ -575,7 +575,7 @@ MonoBehaviour:
   m_Blank: 4
   m_MinSize: 7
   m_Targers:
-  - {fileID: 1215008484}
+  - {fileID: 1069494359}
 --- !u!1 &1520882232
 GameObject:
   m_ObjectHideFlags: 0
