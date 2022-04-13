@@ -222,6 +222,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 653046250332797052, guid: b7ef53dae4e7f3346a22fc4cf8e691d2,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1013459266845585946, guid: b7ef53dae4e7f3346a22fc4cf8e691d2,
         type: 3}
       propertyPath: m_Name
@@ -280,6 +285,56 @@ PrefabInstance:
     - target: {fileID: 1676515232765691307, guid: b7ef53dae4e7f3346a22fc4cf8e691d2,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3796883390232332332, guid: b7ef53dae4e7f3346a22fc4cf8e691d2,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3796883390232332332, guid: b7ef53dae4e7f3346a22fc4cf8e691d2,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5008483119072370323, guid: b7ef53dae4e7f3346a22fc4cf8e691d2,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5008483119072370323, guid: b7ef53dae4e7f3346a22fc4cf8e691d2,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5008483119072370323, guid: b7ef53dae4e7f3346a22fc4cf8e691d2,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6096954067291694776, guid: b7ef53dae4e7f3346a22fc4cf8e691d2,
+        type: 3}
+      propertyPath: m_FullHealthColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6096954067291694776, guid: b7ef53dae4e7f3346a22fc4cf8e691d2,
+        type: 3}
+      propertyPath: m_FullHealthColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6096954067291694776, guid: b7ef53dae4e7f3346a22fc4cf8e691d2,
+        type: 3}
+      propertyPath: m_FullHealthColor.r
+      value: 0.15395391
+      objectReference: {fileID: 0}
+    - target: {fileID: 6592008400140985484, guid: b7ef53dae4e7f3346a22fc4cf8e691d2,
+        type: 3}
+      propertyPath: m_FillAmount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7128231304524980338, guid: b7ef53dae4e7f3346a22fc4cf8e691d2,
+        type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
