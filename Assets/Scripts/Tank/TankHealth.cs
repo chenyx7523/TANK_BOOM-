@@ -51,7 +51,7 @@ public class TankHealth : MonoBehaviour
     // 更新运行状况滑块的值和颜色。
     private void UpdateHealthUI()
     {
-        m_TankCurrentHealth = 30f;
+        //m_TankCurrentHealth = 30f;
         // 将当前声明的值赋值给UI滑块。
         m_TankHealthSlider.value = m_TankCurrentHealth;   
         //m_TankHealthSlider.maxValue = m_TankStarHealth;
@@ -74,7 +74,7 @@ public class TankHealth : MonoBehaviour
 
 
     //坦克受伤
-    public void TannkDamage(float amount)        //amount 即为收到的伤害值
+    public void TankDamage(float amount)        //amount 即为收到的伤害值
     {
 
         // 根据造成的伤害减少当前生命值。
@@ -82,11 +82,12 @@ public class TankHealth : MonoBehaviour
 
         // 更新运行状况滑块的值和颜色。
         UpdateHealthUI();
-
-        // 如果当前运行状况为零或低于零且坦克已经死亡，则调用TankDeath方法。 
-        if (m_TankCurrentHealth <= 0f && m_TankIsDead)
+        Debug.Log(m_TankCurrentHealth);
+        // 如果当前运行状况为零或低于零且坦克还没死亡，则调用TankDeath方法。 
+        if (m_TankCurrentHealth <= 0f && !m_TankIsDead)
         {
             TankDeath();
+            
         }
 
     }
@@ -95,7 +96,7 @@ public class TankHealth : MonoBehaviour
 
     private void TankDeath()
     {
-        // 设置该标志，以便此函数只被调用一次。
+        // 设置该标志，以便此函数只被调用一次。否则死亡方法一直播放
         m_TankIsDead = true;
         // 移动爆炸预制件到坦克的位置并生效。
         m_TankDeathParticle.transform.position = transform.position;

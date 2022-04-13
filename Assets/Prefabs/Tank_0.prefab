@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1945610276246244250}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: particle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 1403400136232414571}
   - component: {fileID: 2114722838492770728}
   - component: {fileID: 6366991740592567439}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: TankFree_Wheel_f_left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 33499009516007355}
   - component: {fileID: 1879406653435356170}
   - component: {fileID: 1808496378844407936}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Health
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -231,7 +231,7 @@ GameObject:
   - component: {fileID: 7441944837589946265}
   - component: {fileID: 9153471384271341201}
   - component: {fileID: 6096954067291694776}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Tank_0
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -254,6 +254,7 @@ Transform:
   - {fileID: 1945610276246244250}
   - {fileID: 203770882532626715}
   - {fileID: 4916171358805715273}
+  - {fileID: 4656370904053382959}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -326,7 +327,7 @@ Rigidbody:
   m_GameObject: {fileID: 1013459266845585946}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 0.5
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -573,7 +574,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5382421057649827547}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -609,7 +610,7 @@ GameObject:
   - component: {fileID: 442916221043226629}
   - component: {fileID: 278021888031611673}
   - component: {fileID: 2110993431285561903}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: TankFree_Canon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -623,13 +624,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1641193759526630708}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0.043619595, y: -0, z: -0, w: -0.99904823}
   m_LocalPosition: {x: 0, y: 0.283638, z: 0.469}
   m_LocalScale: {x: 3, y: 4, z: 1.13}
   m_Children: []
   m_Father: {fileID: 2461871828900276643}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 355, y: 0, z: 0}
 --- !u!33 &278021888031611673
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -688,7 +689,7 @@ GameObject:
   - component: {fileID: 2461871828900276643}
   - component: {fileID: 1052951923480716858}
   - component: {fileID: 8781350805366853256}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: TankFree_Tower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -768,7 +769,7 @@ GameObject:
   - component: {fileID: 930629993942300306}
   - component: {fileID: 7290505651703514281}
   - component: {fileID: 5721913788655736043}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: TankFree_Wheel_b_left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -837,6 +838,36 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!1 &4516849641775210975
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4656370904053382959}
+  m_Layer: 0
+  m_Name: FireTransform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4656370904053382959
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4516849641775210975}
+  m_LocalRotation: {x: 0.043619595, y: -0, z: -0, w: -0.99904823}
+  m_LocalPosition: {x: 0, y: 0.847, z: 1.374}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1676515232765691307}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 355, y: 0, z: 0}
 --- !u!82 &1752780207234599240
 AudioSource:
   m_ObjectHideFlags: 0
@@ -942,7 +973,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 793209670681980504}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -980,7 +1011,7 @@ GameObject:
   - component: {fileID: 4224812733941447662}
   - component: {fileID: 4353472934263861174}
   - component: {fileID: 1820324300687391531}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: TankFree_Wheel_f_right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1060,7 +1091,7 @@ GameObject:
   - component: {fileID: 2576636012284686738}
   - component: {fileID: 3386663858243481624}
   - component: {fileID: 5176446014369165040}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1158,7 +1189,7 @@ GameObject:
   - component: {fileID: 6026120474321401126}
   - component: {fileID: 1393538162790841351}
   - component: {fileID: 4451245644310223183}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1232,7 +1263,7 @@ GameObject:
   - component: {fileID: 196580835237340179}
   - component: {fileID: 792886826733332345}
   - component: {fileID: 7441291453688197089}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1306,7 +1337,7 @@ GameObject:
   - component: {fileID: 4743878250017468924}
   - component: {fileID: 5817347920217391218}
   - component: {fileID: 7194830415401120158}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: TankFree_Wheel_b_right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1385,6 +1416,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DustTrail1
       objectReference: {fileID: 0}
+    - target: {fileID: 148586, guid: f7167ad2844254441b40b8a300b4f1fe, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 496482, guid: f7167ad2844254441b40b8a300b4f1fe, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1460,6 +1495,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DustTrail1 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 148586, guid: f7167ad2844254441b40b8a300b4f1fe, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 496482, guid: f7167ad2844254441b40b8a300b4f1fe, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1531,9 +1570,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1676515232765691307}
     m_Modifications:
+    - target: {fileID: 142696, guid: ee49a9a8678ecf8468eb488e1ac8d42b, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 151086, guid: ee49a9a8678ecf8468eb488e1ac8d42b, type: 3}
       propertyPath: m_Name
       value: TankExplosion
+      objectReference: {fileID: 0}
+    - target: {fileID: 151086, guid: ee49a9a8678ecf8468eb488e1ac8d42b, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 182560, guid: ee49a9a8678ecf8468eb488e1ac8d42b, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 436668, guid: ee49a9a8678ecf8468eb488e1ac8d42b, type: 3}
       propertyPath: m_RootOrder

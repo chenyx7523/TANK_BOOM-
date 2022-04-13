@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3440177518713044778}
   - component: {fileID: 4891328034594386590}
   - component: {fileID: 5765761823840777747}
+  - component: {fileID: 3154670827461427999}
   m_Layer: 0
   m_Name: shell
   m_TagString: Untagged
@@ -95,7 +96,7 @@ CapsuleCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.12
-  m_Height: 0
+  m_Height: 0.69
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0.11}
 --- !u!54 &3440177518713044778
@@ -271,6 +272,27 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &3154670827461427999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9094009511398482965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2b906db0d96125478bfb717b69b959b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TankMask:
+    serializedVersion: 2
+    m_Bits: 512
+  m_ShellExplosionParticles: {fileID: 5238150619139380598}
+  m_ShellExplosionSound: {fileID: 4891328034594386590}
+  m_MaxDamage: 100
+  m_Shock: 1000
+  m_ShellDisappearTime: 2
+  m_ShellExplosionRadius: 10
 --- !u!1001 &5238150619124312160
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -278,9 +300,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6703507361672089557}
     m_Modifications:
+    - target: {fileID: 113952, guid: 89e78efe92dfe5a42837b392cdb0bf9e, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 195792, guid: 89e78efe92dfe5a42837b392cdb0bf9e, type: 3}
       propertyPath: m_Name
       value: ShellExplosion
+      objectReference: {fileID: 0}
+    - target: {fileID: 195792, guid: 89e78efe92dfe5a42837b392cdb0bf9e, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 199372, guid: 89e78efe92dfe5a42837b392cdb0bf9e, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 486730, guid: 89e78efe92dfe5a42837b392cdb0bf9e, type: 3}
       propertyPath: m_RootOrder
@@ -331,6 +365,12 @@ PrefabInstance:
 --- !u!4 &5238150619124122922 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 486730, guid: 89e78efe92dfe5a42837b392cdb0bf9e,
+    type: 3}
+  m_PrefabInstance: {fileID: 5238150619124312160}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &5238150619139380598 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 19807510, guid: 89e78efe92dfe5a42837b392cdb0bf9e,
     type: 3}
   m_PrefabInstance: {fileID: 5238150619124312160}
   m_PrefabAsset: {fileID: 0}
