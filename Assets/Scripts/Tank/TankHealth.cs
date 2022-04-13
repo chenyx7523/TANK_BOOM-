@@ -6,11 +6,11 @@ using UnityEngine.UI;
 public class TankHealth : MonoBehaviour
 {
 
-    public float m_TankStarHealth=100f;            //  每个坦克开始时的生命值。
+    public float m_TankStarHealth = 100;            //  每个坦克开始时的生命值。
     public Slider m_TankHealthSlider;              // 表示坦克当前生命值的滑块。
     public Image m_TankHealthFillImage;                // 滑动块的图像组件。  
-    public Color m_FullHealthColor;                // 当生命值满时，生命条的颜色。
-    public Color m_ZeroHealthColor;                // 当没有生命值时，生命条的颜色
+    public Color m_FullHealthColor = Color.green;                // 当生命值满时，生命条的颜色。
+    public Color m_ZeroHealthColor=Color.red;                // 当没有生命值时，生命条的颜色
     public GameObject m_TankDeathPrefab;           // 一个在Awake中实例化的预制件，当坦克b死亡时使用。
 
 
@@ -45,8 +45,36 @@ public class TankHealth : MonoBehaviour
         UpdateHealthUI();
     }
 
+  
+
+
+    // 更新运行状况滑块的值和颜色。
+    private void UpdateHealthUI()
+    {
+        m_TankCurrentHealth = 30f;
+        // 将当前声明的值赋值给UI滑块。
+        m_TankHealthSlider.value = m_TankCurrentHealth;   
+        //m_TankHealthSlider.maxValue = m_TankStarHealth;
+        //float health = m_TankCurrentHealth / m_TankStarHealth;      /* m_TankCurrentHealth / m_TankStarHealth;*/        
+        //m_TankHealthFillImage.fillAmount = health;
+
+        //[BUG]
+
+        //根据当前血量和满血的百分比，在选定的颜色之间插入条的颜色。
+        //Lerp线性插值  https://docs.unity.cn/cn/2019.4/ScriptReference/Color.Lerp.html
+
+        m_TankHealthFillImage.color =
+            Color.Lerp(m_ZeroHealthColor, m_FullHealthColor, m_TankCurrentHealth / m_TankStarHealth);
+
+        //if (m_TankCurrentHealth <= 33)
+        //{
+        //    m_TankHealthFillImage.color = Color.red;
+        //}
+    }
+
+
     //坦克受伤
-    public void TannkDamage (float amount)        //amount 即为收到的伤害值
+    public void TannkDamage(float amount)        //amount 即为收到的伤害值
     {
 
         // 根据造成的伤害减少当前生命值。
@@ -60,27 +88,6 @@ public class TankHealth : MonoBehaviour
         {
             TankDeath();
         }
-
-
-
-    }
-
-
-
-
-
-    // 更新运行状况滑块的值和颜色。
-    private void UpdateHealthUI()
-    {
-        // 将当前声明的值赋值给UI滑块。
-        m_TankHealthSlider.value = m_TankCurrentHealth;
-        m_TankHealthSlider.maxValue = m_TankStarHealth;
-
-        //根据当前血量和满血的百分比，在选定的颜色之间插入条的颜色。
-        m_TankHealthFillImage.color = 
-            Color.Lerp(m_ZeroHealthColor, m_FullHealthColor, m_TankCurrentHealth / m_TankStarHealth);
-
-
 
     }
 
