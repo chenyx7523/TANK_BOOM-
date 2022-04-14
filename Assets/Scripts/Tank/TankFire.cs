@@ -24,27 +24,30 @@ public class TankFire : MonoBehaviour
     public float m_MaxFire = 40;              // 在最大充能时间内按动射击按钮给予炮弹的力。
     private float m_MaxFireTime = 1f;         // 炮弹最大充能所需时间。
 
+    public float m_ReFireTime = 2f;        //重新发射的冷却时间
     private string m_FireButtonName;        // 长按发射的输入键（即空格）。
     private float m_UpFireButton;           // 当发射按钮被释放时，将给予炮弹的力量。
+    //private bool m_UpFireButtonEnabled;     // 判断Fire是否松开
     private float m_ChargeSpeed;            // 根据最大充电时间，发射力增加的速度。
-    private bool m_FireShoot;               // 是否已经发射。
-    private float m_ReFireTime = 2f;        //重新发射的冷却时间
+    private bool m_FireShoot;               // 是否已经发射。    
     private float m_FireTime;               //上次发射过了多久
 
 
     private void OnEnable()
     {
-        // 当坦克启动时，重置发射力和UI
+        //当坦克启动时，重置发射力和UI 发射状态和发射冷却CD
         m_UpFireButton = m_MinFire;
         m_Aim.value = m_MinFire;
+        m_FireTimeSlider.value = m_ReFireTime;
         m_FireShoot = false;
         m_FireTime = m_ReFireTime;
+        
     }
 
 
     private void Start()
     {
-
+        //记录不同玩家输入
         m_FireButtonName = "Fire" + m_Playernum;
 
         // 发射力充能的速率是在最大充电时间内可能产生的力的范围。
@@ -57,34 +60,27 @@ public class TankFire : MonoBehaviour
         // 滑块应该有最小发射力的默认值。
         m_Aim.value = m_MinFire;
 
-        
-        if(m_FireTime <= m_ReFireTime)
+        //距离上次发射小于发射CD时，距离上次发射时间值叠加
+        if(m_FireTime < m_ReFireTime)
         {
             m_FireTime += Time.deltaTime;
         }
-        else
+        else  
         {
-            m_FireTime = m_ReFireTime;   
+            m_FireTime = m_ReFireTime;
+            //Debug.Log("Fire");
         }
         UpdateFireTime();
-        // 如果超过了最大力，而炮弹还没有发射
-        if (m_UpFireButton >= m_MaxFire && !m_FireShoot)
-        {
-            // 用Max力量发射炮弹。
-            m_UpFireButton = m_MaxFire;
-            if (m_FireTime == m_ReFireTime)
-            {
-                Fire();
-            }
 
-        }
+        
         // 开火按钮刚刚开始被按下
-
-        else if (Input.GetButtonDown(m_FireButtonName))
+        if (Input.GetButtonDown(m_FireButtonName))
         {
             //重置发射状态和发射力量。
             m_FireShoot = false;
+            
             m_UpFireButton = m_MinFire;
+            
 
             // 播放充能声音
             m_ShootAudio.clip = m_ChargingClip;
@@ -94,13 +90,29 @@ public class TankFire : MonoBehaviour
         else if (Input.GetButton(m_FireButtonName) && !m_FireShoot)
         {
             // 增加发射力并更新滑块。
+            
             m_UpFireButton += m_ChargeSpeed * Time.deltaTime;
             m_Aim.value = m_UpFireButton;
         }
         // 发射按钮被释放，炮弹还没有发射,使其发射
         else if (Input.GetButtonUp(m_FireButtonName) && !m_FireShoot)
         {
-
+            
+            if (m_FireTime == m_ReFireTime)
+            {
+                Fire();
+            }
+        }
+        // 如果超过了最大力，而炮弹还没有发射,且刚好松开按键
+        else if (m_UpFireButton >= m_MaxFire && !m_FireShoot && !Input.GetButtonUp(m_FireButtonName))
+        {
+            // 当Fire键松开时，用Max力量发射炮弹。
+            //if (m_UpFireButtonEnabled)
+            //{
+                
+            //}
+            m_UpFireButton = m_MaxFire;
+            //距离上次发射时间==CD，可以发射
             if (m_FireTime == m_ReFireTime)
             {
                 Fire();

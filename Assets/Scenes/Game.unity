@@ -578,6 +578,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 461123113484213276, guid: b7ef53dae4e7f3346a22fc4cf8e691d2,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1013459266845585946, guid: b7ef53dae4e7f3346a22fc4cf8e691d2,
         type: 3}
       propertyPath: m_Name
@@ -643,6 +648,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2835577837439146896, guid: b7ef53dae4e7f3346a22fc4cf8e691d2,
+        type: 3}
+      propertyPath: m_OneFireTime.a
+      value: 0.8862745
+      objectReference: {fileID: 0}
+    - target: {fileID: 2835577837439146896, guid: b7ef53dae4e7f3346a22fc4cf8e691d2,
+        type: 3}
+      propertyPath: m_OneFireTime.b
+      value: 0.8226876
+      objectReference: {fileID: 0}
+    - target: {fileID: 2835577837439146896, guid: b7ef53dae4e7f3346a22fc4cf8e691d2,
+        type: 3}
+      propertyPath: m_OneFireTime.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2835577837439146896, guid: b7ef53dae4e7f3346a22fc4cf8e691d2,
+        type: 3}
+      propertyPath: m_OneFireTime.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3002982874551061761, guid: b7ef53dae4e7f3346a22fc4cf8e691d2,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -653,12 +678,27 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3002982874551061761, guid: b7ef53dae4e7f3346a22fc4cf8e691d2,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.0000024437904
+      objectReference: {fileID: 0}
     - target: {fileID: 6026120474321401126, guid: b7ef53dae4e7f3346a22fc4cf8e691d2,
         type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6026120474321401126, guid: b7ef53dae4e7f3346a22fc4cf8e691d2,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6915979502855440010, guid: b7ef53dae4e7f3346a22fc4cf8e691d2,
+        type: 3}
+      propertyPath: m_Name
+      value: FireTime
+      objectReference: {fileID: 0}
+    - target: {fileID: 8279884534649421421, guid: b7ef53dae4e7f3346a22fc4cf8e691d2,
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
