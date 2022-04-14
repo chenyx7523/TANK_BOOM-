@@ -9,9 +9,9 @@ public class TankHealth : MonoBehaviour
 
     public float m_TankStarHealth = 100;            //  每个坦克开始时的生命值。
     public Slider m_TankHealthSlider;              // 表示坦克当前生命值的滑块。
-    public Image m_TankHealthFillImage;                // 滑动块的图像组件。  
-    public Color m_FullHealthColor = Color.green;                // 当生命值满时，生命条的颜色。
-    public Color m_ZeroHealthColor=Color.red;                // 当没有生命值时，生命条的颜色
+    public Image m_TankHealthFillImage;            // 滑动块的图像组件。  
+    public Color m_FullHealthColor = Color.green;  // 当生命值满时，生命条的颜色。
+    public Color m_ZeroHealthColor=Color.red;      // 当没有生命值时，生命条的颜色
     public GameObject m_TankDeathPrefab;           // 一个在Awake中实例化的预制件，当坦克b死亡时使用。
 
 
@@ -109,13 +109,17 @@ public class TankHealth : MonoBehaviour
 
         gameObject.SetActive(false);
 
-        //ScenesManager.GameRestar();
+        //测试用        ToDelete
+        //调用其他类函数方法
+        //重新开始
+        GameObject.Find("GameManager").GetComponent<ScenesManager>().Invoke("GameRestar", 1);  //Invoke 延时1s调用GameRestar（）方法
+        //目标类挂载的对象名称              //类名           //方法名
+
+
 
     }
 
-
-
-
+    
 
 
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIHealth : MonoBehaviour
+public class UI_NoRotate : MonoBehaviour
 {
     // 确保世界空间UI生命值条等元素朝向正确的方向
 
