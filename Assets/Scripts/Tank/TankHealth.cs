@@ -82,7 +82,7 @@ public class TankHealth : MonoBehaviour
 
         // 更新运行状况滑块的值和颜色。
         UpdateHealthUI();
-        Debug.Log(m_TankCurrentHealth);
+        
         // 如果当前运行状况为零或低于零且坦克还没死亡，则调用TankDeath方法。 
         if (m_TankCurrentHealth <= 0f && !m_TankIsDead)
         {
