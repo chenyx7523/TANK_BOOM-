@@ -289,7 +289,7 @@ MonoBehaviour:
     m_Bits: 512
   m_ShellExplosionParticles: {fileID: 5238150619139380598}
   m_ShellExplosionSound: {fileID: 4891328034594386590}
-  m_MaxDamage: 10
+  m_MaxDamage: 100
   m_Shock: 1000
   m_ShellDisappearTime: 2
   m_ShellExplosionRadius: 10

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class TankHealth : MonoBehaviour
@@ -106,7 +107,9 @@ public class TankHealth : MonoBehaviour
         m_TankDeathParticle.Play();
         m_TankDeathAudio.Play();    
 
-        gameObject.SetActive(false);    
+        gameObject.SetActive(false);
+
+        //ScenesManager.GameRestar();
 
     }
 

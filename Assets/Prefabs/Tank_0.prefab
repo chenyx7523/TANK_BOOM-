@@ -299,8 +299,8 @@ GameObject:
   - component: {fileID: 1676515232765691307}
   - component: {fileID: 4740891756153162074}
   - component: {fileID: 7218384379233196417}
+  - component: {fileID: 7591130955746345557}
   - component: {fileID: 9178482367839626555}
-  - component: {fileID: 4228273616337911981}
   - component: {fileID: 5526868064865977803}
   - component: {fileID: 7441944837589946265}
   - component: {fileID: 9153471384271341201}
@@ -380,6 +380,22 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!54 &7591130955746345557
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1013459266845585946}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 80
+  m_CollisionDetection: 0
 --- !u!65 &9178482367839626555
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -393,22 +409,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.06, y: 1.71, z: 2.6642036}
   m_Center: {x: 0.0000003874302, y: 0.14, z: -0.038929284}
---- !u!54 &4228273616337911981
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1013459266845585946}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 84
-  m_CollisionDetection: 0
 --- !u!82 &5526868064865977803
 AudioSource:
   m_ObjectHideFlags: 0
@@ -637,8 +637,8 @@ MonoBehaviour:
   m_TankStarHealth: 100
   m_TankHealthSlider: {fileID: 1879406653435356170}
   m_TankHealthFillImage: {fileID: 4451245644310223183}
-  m_FullHealthColor: {r: 0.29803923, g: 0.8392157, b: 0.29803923, a: 0.60784316}
-  m_ZeroHealthColor: {r: 1, g: 0.19339621, b: 0.19339621, a: 0.60784316}
+  m_FullHealthColor: {r: 0.29803923, g: 0.8392157, b: 0.29803923, a: 0.78431374}
+  m_ZeroHealthColor: {r: 1, g: 0.19339621, b: 0.19339621, a: 0.78431374}
   m_TankDeathPrefab: {fileID: 4916171358805987035}
 --- !u!114 &2835577837439146896
 MonoBehaviour:
@@ -1456,7 +1456,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.7372549}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
