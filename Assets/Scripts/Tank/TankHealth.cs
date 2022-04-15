@@ -112,7 +112,7 @@ public class TankHealth : MonoBehaviour
         //测试用        ToDelete
         //调用其他类函数方法
         //重新开始
-        GameObject.Find("GameManager").GetComponent<ScenesManager>().Invoke("GameRestar", 1);  //Invoke 延时1s调用GameRestar（）方法
+        /*GameObject.Find("GameManager").GetComponent<ScenesManager>().Invoke("GameRestar", 1); */ //Invoke 延时1s调用GameRestar（）方法
         //目标类挂载的对象名称              //类名           //方法名
 
 

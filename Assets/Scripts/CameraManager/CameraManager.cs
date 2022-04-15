@@ -13,7 +13,7 @@ public class CameraManager : MonoBehaviour
     private Vector3 m_CameraMove;              // 用来平滑左右移动  
     private Vector3 m_CameraTargerPosition;    // 相机目标到达的地点 （预期的位置）
 
-    public Transform[] m_Targers;             // 摄像机要瞄准的所有目标。（即两个坦克）
+    [HideInInspector] public Transform[] m_Targets;             // 摄像机要瞄准的所有目标。（即两个坦克）
 
 
     private void Awake()
@@ -45,10 +45,10 @@ public class CameraManager : MonoBehaviour
         //当前玩家数量为0
         int PlayNumber = 0;
         //遍历每个玩家 
-        for (int i = 0; i < m_Targers.Length; i++)
+        for (int i = 0; i < m_Targets.Length; i++)
         {
             //将每个玩家的坐标值相加
-            averagePos += m_Targers[i].position;
+            averagePos += m_Targets[i].position;
             //每遍历一个，玩家数量加1
             PlayNumber++;
 
@@ -70,10 +70,10 @@ public class CameraManager : MonoBehaviour
     {
 
         // 根据所需的位置找到所需的大小，并平稳地过渡到该大小。 
-        float targerSize = FindRequiredSize();
+        float TargetsSize = FindRequiredSize();
         //orthographicSize(正切角度大小)API https://docs.unity.cn/cn/2019.4/ScriptReference/Camera-orthographicSize.html
         //SmoothDamp随时间推移将一个值逐渐改变为所需目标。  https://docs.unity.cn/cn/2019.4/ScriptReference/Mathf.SmoothDamp.html
-        m_Camera.orthographicSize = Mathf.SmoothDamp(m_Camera.orthographicSize, targerSize, ref m_ZoomSpeed, m_DampTime);
+        m_Camera.orthographicSize = Mathf.SmoothDamp(m_Camera.orthographicSize, TargetsSize, ref m_ZoomSpeed, m_DampTime);
     }                                                    //当前大小               目标大小          平滑缩放       多少时间完成
 
     //获得一个相机的期望大小并返回（size）  {未理解}
@@ -86,10 +86,10 @@ public class CameraManager : MonoBehaviour
         float size = 0;
 
         //遍历所有玩家
-        for (int i = 0; i < m_Targers.Length; i++)
+        for (int i = 0; i < m_Targets.Length; i++)
         {
             // 在相机的局部空间中查找目标的位置
-            Vector3 playerPos = transform.InverseTransformPoint(m_Targers[i].position);
+            Vector3 playerPos = transform.InverseTransformPoint(m_Targets[i].position);
             // 从相机的局部空间的期望位置到目标的位置的差。
             Vector3 desiredPosToTarget = playerPos - m_TargerPosition;
             // 从当前的尺寸中选择最大的和坦克“向上”或“向下”距离相机。

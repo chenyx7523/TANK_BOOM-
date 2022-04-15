@@ -22,7 +22,7 @@ public class TankMovement : MonoBehaviour
     private float m_MoveValue;      //移动值
     private float m_TureValue;      //转向值
     private float m_SonudStar;      //声音起始值
-    private ParticleSystem[] m_ParticleSystem;   //实例化粒子系统
+    //private ParticleSystem[] m_ParticleSystem;   //实例化粒子系统
 
 
     private void Awake()
