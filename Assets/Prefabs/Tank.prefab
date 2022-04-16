@@ -662,8 +662,8 @@ MonoBehaviour:
   m_FireClip: {fileID: 8300000, guid: 672a9941361ad494a99fba36759eca80, type: 3}
   m_FireTimeSlider: {fileID: 7758320392208102158}
   m_FireTimeFillImage: {fileID: 6028131537230691392}
-  m_ZeroFireTime: {r: 1, g: 1, b: 1, a: 0.5882353}
-  m_OneFireTime: {r: 0.41037738, g: 1, b: 0.9735846, a: 0.7882353}
+  m_ZeroFireTime: {r: 0.2028302, g: 1, b: 0.9229808, a: 1}
+  m_OneFireTime: {r: 0.3726415, g: 0.5373981, b: 1, a: 1}
   m_MinFire: 20
   m_MaxFire: 40
   m_ReFireTime: 2
@@ -1074,6 +1074,7 @@ GameObject:
   - component: {fileID: 4106112936606605351}
   - component: {fileID: 1788545714331612744}
   - component: {fileID: 4137213954103364281}
+  - component: {fileID: 2784716738031743258}
   m_Layer: 9
   m_Name: Background
   m_TagString: Untagged
@@ -1121,7 +1122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.49803922}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1137,6 +1138,27 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!223 &2784716738031743258
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4110207664361406611}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1 &4516849641775210975
 GameObject:
   m_ObjectHideFlags: 0
@@ -1160,13 +1182,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4516849641775210975}
-  m_LocalRotation: {x: 0.043619595, y: -0, z: -0, w: -0.99904823}
-  m_LocalPosition: {x: 0, y: 1.041, z: 3.591}
+  m_LocalRotation: {x: 0.06104879, y: -0, z: -0, w: -0.99813485}
+  m_LocalPosition: {x: 0, y: 1.21, z: 2.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1676515232765691307}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 355, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 353, y: 0, z: 0}
 --- !u!82 &1752780207234599240
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1321,7 +1343,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1735,7 +1757,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &4692820209867687442
 MonoBehaviour:

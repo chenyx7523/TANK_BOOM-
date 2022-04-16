@@ -7,7 +7,7 @@ using UnityEngine.UI;
 //控制坦克的子弹和爆炸
 public class TankFire : MonoBehaviour
 {
-    public int m_Playernum = 1;              // 用来识别不同的玩家。
+    public int m_Playernum;              // 用来识别不同的玩家。
     public Rigidbody m_Shell;                // 实例化预制体。
     public Transform m_FireTransform;        // 发射炮弹的坐标
     public Slider m_Aim;                     // 实例化滑块
@@ -21,7 +21,7 @@ public class TankFire : MonoBehaviour
     public Color m_OneFireTime;                  //可以发射的颜色
 
     public float m_MinFire = 20f;             // 初始给予炮弹的力。
-    public float m_MaxFire = 40;              // 在最大充能时间内按动射击按钮给予炮弹的力。
+    public float m_MaxFire = 40f;              // 在最大充能时间内按动射击按钮给予炮弹的力。
     private float m_MaxFireTime = 1f;         // 炮弹最大充能所需时间。
 
     public float m_ReFireTime = 2f;        //重新发射的冷却时间
@@ -90,8 +90,14 @@ public class TankFire : MonoBehaviour
         else if (Input.GetButton(m_FireButtonName) && !m_FireShoot)
         {
             // 增加发射力并更新滑块。
-            
-            m_UpFireButton += m_ChargeSpeed * Time.deltaTime;
+            if (m_UpFireButton<=m_MaxFire)
+            {
+                m_UpFireButton += m_ChargeSpeed * Time.deltaTime;
+            }
+            else
+            {
+                m_UpFireButton = m_MaxFire;
+            }
             m_Aim.value = m_UpFireButton;
         }
         // 发射按钮被释放，炮弹还没有发射,使其发射

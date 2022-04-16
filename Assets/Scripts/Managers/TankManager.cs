@@ -14,7 +14,7 @@ namespace Complete
 
 
         public Color m_PlayerColor;                             // 这是这个坦克将要生成的颜色。
-        public Transform m_SpawnPoint;                          // 坦克出生的位置和方向。
+        public Transform m_Bron;                          // 坦克出生的位置和方向。
         [HideInInspector] public int m_PlayerNumber;            // 用来指定玩家。
         [HideInInspector] public string m_ColoredPlayerText;    // 一串代表玩家的数字，颜色与他们的坦克相匹配。
         [HideInInspector] public GameObject m_Instance;         // 创建对象时对其实例的引用。
@@ -75,8 +75,8 @@ namespace Complete
         // 在每个回合的开始使用，使坦克进入默认状态。
         public void Reset()
         {
-            m_Instance.transform.position = m_SpawnPoint.position;
-            m_Instance.transform.rotation = m_SpawnPoint.rotation;
+            m_Instance.transform.position = m_Bron.position;
+            m_Instance.transform.rotation = m_Bron.rotation;
 
             m_Instance.SetActive(false);         //https://docs.unity.cn/cn/2019.4/ScriptReference/GameObject.SetActive.html
             m_Instance.SetActive(true);

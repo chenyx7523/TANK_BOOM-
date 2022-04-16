@@ -11,7 +11,7 @@ public class CameraManager : MonoBehaviour
     private Camera m_Camera;                   // 标记相机 
     private float m_ZoomSpeed;                 // 用来平滑前后（正交）移动 
     private Vector3 m_CameraMove;              // 用来平滑左右移动  
-    private Vector3 m_CameraTargerPosition;    // 相机目标到达的地点 （预期的位置）
+    private Vector3 m_CameraTargetPosition;    // 相机目标到达的地点 （预期的位置）
 
     [HideInInspector] public Transform[] m_Targets;             // 摄像机要瞄准的所有目标。（即两个坦克）
 
@@ -33,7 +33,7 @@ public class CameraManager : MonoBehaviour
         FindAveragePosition();
         //移动到目标位置
         //当前位置  目标到达点  参考变量（ref表示将要回到那个变量） 所用时间 Vector3.SmoothDamp  https://docs.unity.cn/cn/2019.4/ScriptReference/Vector3.SmoothDamp.html
-        transform.position = Vector3.SmoothDamp(transform.position, m_CameraTargerPosition, ref m_CameraMove, m_DampTime);
+        transform.position = Vector3.SmoothDamp(transform.position, m_CameraTargetPosition, ref m_CameraMove, m_DampTime);
         //当前位置               目标位置             平滑移动      多少时间完成
     }
 
@@ -61,7 +61,7 @@ public class CameraManager : MonoBehaviour
             //y轴保持不变
             averagePos.y = transform.position.y;
             //赋值给期望移动的坐标
-            m_CameraTargerPosition = averagePos;
+            m_CameraTargetPosition = averagePos;
         }
     }
 
@@ -80,7 +80,7 @@ public class CameraManager : MonoBehaviour
     private float FindRequiredSize()
     {
         //找到相机在空间中的移动位置
-        Vector3 m_TargerPosition = transform.InverseTransformPoint(m_CameraTargerPosition);
+        Vector3 m_TargetPosition = transform.InverseTransformPoint(m_CameraTargetPosition);
 
         //从0开始相机大小的计算
         float size = 0;
@@ -91,7 +91,7 @@ public class CameraManager : MonoBehaviour
             // 在相机的局部空间中查找目标的位置
             Vector3 playerPos = transform.InverseTransformPoint(m_Targets[i].position);
             // 从相机的局部空间的期望位置到目标的位置的差。
-            Vector3 desiredPosToTarget = playerPos - m_TargerPosition;
+            Vector3 desiredPosToTarget = playerPos - m_TargetPosition;
             // 从当前的尺寸中选择最大的和坦克“向上”或“向下”距离相机。
             size = Mathf.Max(size, Mathf.Abs(desiredPosToTarget.y));
             // 从当前的尺寸和计算的尺寸中选择最大的，基于坦克是在相机的左边还是右边。
@@ -114,7 +114,7 @@ public class CameraManager : MonoBehaviour
         FindAveragePosition();
 
         // 在没有阻尼的情况下，将相机的位置设置为所需的位置。
-        transform.position = m_CameraTargerPosition;
+        transform.position = m_CameraTargetPosition;
 
         // 找到并设置所需的相机的正切大小。
         m_Camera.orthographicSize = FindRequiredSize(); 
