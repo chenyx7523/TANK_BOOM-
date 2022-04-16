@@ -285,7 +285,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &840708142
 RectTransform:
   m_ObjectHideFlags: 0
@@ -800,13 +800,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6648a90d8a5d6764ca11537cf8c5fed2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_NumberToWin: 5
-  m_StarDelay: 0.5
+  m_NumRoundsToWin: 5
+  m_StartDelay: 0.5
   m_EndDelay: 1
-  m_CameraManager: {fileID: 1271485964}
-  m_Text: {fileID: 840708143}
+  m_CameraControl: {fileID: 0}
+  m_MessageText: {fileID: 0}
   m_TankPrefab: {fileID: 1013459266845585946, guid: b7ef53dae4e7f3346a22fc4cf8e691d2,
     type: 3}
+  m_Tanks:
+  - m_PlayerColor: {r: 0, g: 0.41486025, b: 1, a: 1}
+    m_SpawnPoint: {fileID: 1824802987}
+    m_PlayerNumber: 0
+    m_ColoredPlayerText: 
+    m_Instance: {fileID: 0}
+    m_Wins: 0
+  - m_PlayerColor: {r: 1, g: 0, b: 0, a: 1}
+    m_SpawnPoint: {fileID: 1559392728}
+    m_PlayerNumber: 0
+    m_ColoredPlayerText: 
+    m_Instance: {fileID: 0}
+    m_Wins: 0
 --- !u!4 &1994387792
 Transform:
   m_ObjectHideFlags: 0
