@@ -10,8 +10,8 @@ namespace Complete
     public class Manager : MonoBehaviour
     {
         public int m_NumberToWin = 5;                           // 获胜回合数。
-        public float m_StarDelay = 0.5f;                        // 延迟0.5s后开始。
-        public float m_EndDelay = 1f;                           // 延迟1s后进入下一个对局。
+        public float m_StarTime = 0.5f;                        // 延迟0.5s后开始。
+        public float m_EndTime = 1f;                           // 延迟1s后进入下一个对局。
 
         public CameraManager m_CameraManager;                    // 在不同阶段的控制，请参考CameraControl脚本。
         public Text m_Text;                                    // 参考叠加文本显示获胜文本等。
@@ -19,7 +19,7 @@ namespace Complete
         public TankManager[] m_Tank;                           // 一组管理器，用于启用和禁用坦克的不同方面。
 
 
-        private int m_RoundNUm;                               // 记录回合数。
+        private int m_RoundNUm = 0;                               // 记录回合数。
         private WaitForSeconds m_StartWait;                   // 开始时的延迟延迟。     WaitForSeconds     https://docs.unity.cn/cn/2019.4/ScriptReference/WaitForSeconds.html
         private WaitForSeconds m_EndWait;                     // 结束后的延迟。
         private TankManager m_RoundWinner;                    // 回合胜利者。
@@ -29,14 +29,14 @@ namespace Complete
         private void Start()
         {
             // 制造延迟
-            m_StartWait = new WaitForSeconds(m_StarDelay);
-            m_EndWait = new WaitForSeconds(m_EndDelay);
+            m_StartWait = new WaitForSeconds(m_StarTime);
+            m_EndWait = new WaitForSeconds(m_EndTime);
 
             AllTank();
             SetCameraTargets();
 
-            // 一旦坦克被创造出来，摄像机将它们作为目标，游戏就开始了。
-
+            // 一旦坦克被创造出来，摄像机将它们作为目标，游戏就开始了。(执行协程)
+            StartCoroutine(GameLoop());
 
         }
 
@@ -49,7 +49,7 @@ namespace Complete
             {
                 // 创建它们，设置它们的玩家编号和控制所需的引用。
                 m_Tank[i].m_Instance =                  //在生成点生成
-                    Instantiate(m_TankPrefab, m_Tank[i].m_Bron.position, m_Tank[i].m_Bron.rotation) as GameObject;
+                    Instantiate(m_TankPrefab, m_Tank[i].m_Bron.position, m_Tank[i].m_Bron.rotation);
 
                 m_Tank[i].m_PlayerNumber = i + 1;
                 m_Tank[i].Setup();
@@ -68,16 +68,18 @@ namespace Complete
                 targets[i] = m_Tank[i].m_Instance.transform;   //将坦克实例赋值给数组
 
             }
-            // 这些是摄像机应该跟踪的目标。
+            // 这些是摄像机应该跟踪的目标。将坐标传入Camera中后续调用
             m_CameraManager.m_Targets = targets;     //相机跟踪数组元素
 
         }
 
-
+        // BUG 完全未执行
+        // 这将在游戏开始时调用，并将一个接一个地运行游戏的每个阶段。IEnumerator(协程)
         private IEnumerator GameLoop()
         {
             // 首先运行“RoundStarting”协程，但在它完成之前不要返回。
-            yield return StartCoroutine(RoundStarting());
+            //Debug.Log("yield return StartCoroutine(RoundStarting());");
+            yield return StartCoroutine(RoundStarting());            // API   https://docs.unity.cn/cn/2019.4/ScriptReference/MonoBehaviour.StartCoroutine.html
 
             // 一旦“RoundStarting”协程完成，运行“RoundPlaying”协程，但在它完成之前不要返回。
             yield return StartCoroutine(RoundPlaying());
@@ -89,13 +91,13 @@ namespace Complete
             if (m_GameWinner != null)
             {
 
-                SceneManager.LoadScene(0);
+                SceneManager.LoadScene(1);
 
             }
             else
             {
                 // 如果还没有赢家，重新启动这个协程，循环继续。
-                //请注意，这个协程不会屈服。这意味着当前版本的GameLoop将会结束。 Note that this coroutine doesn't yield.  This means that the current version of the GameLoop will end.
+                //请注意，这个协程不会结束。这意味着当前版本的GameLoop将会结束。 Note that this coroutine doesn't yield.  This means that the current version of the GameLoop will end.
                 StartCoroutine(GameLoop());
             }
 
@@ -104,16 +106,18 @@ namespace Complete
 
         private IEnumerator RoundStarting()
         {
-            // 一旦回合开始重置坦克，确保它们不能移动。
+            // 这个功能是用来打开所有的坦克和重置他们的位置和属性。
             ResetAllTanks();
+            //禁止玩家操作和启用tank功能
             DisableTankControl();
 
-            // 将相机的变焦和位置调整到适合重置坦克的位置。
+            //重置摄像机位置，初始化
             m_CameraManager.ResectCamera();
 
             // 增加整数，并显示文本显示玩家它是多少。
             m_RoundNUm++;
-            m_Text.text = "ROUND " + m_RoundNUm;
+            m_Text.text = "回合 " + m_RoundNUm;
+            Debug.Log("star");
 
             // 等待指定的时间长度，直到将控制权交还给游戏循环。
             yield return m_StartWait;
@@ -127,9 +131,9 @@ namespace Complete
 
             // 清除屏幕上的文本。
             m_Text.text = string.Empty;
-
-            // 现在已经没有坦克了…
-            while (!OneTankLeft())
+            Debug.Log("playing");
+            // 直到没有坦克
+            while (!RemainTank())
             {
                 // 下一帧返回。
                 yield return null;
@@ -139,7 +143,7 @@ namespace Complete
 
         private IEnumerator RoundEnding()
         {
-            // 阻止坦克移动。
+            // 阻止玩家对坦克的操作。
             DisableTankControl();
 
             //清除前一回合的赢家
@@ -150,7 +154,7 @@ namespace Complete
 
             // 如果有赢家，增加他们的分数。
             if (m_RoundWinner != null)
-                m_RoundWinner.m_Wins++;
+                m_RoundWinner.m_WinTime++;
 
             //现在胜者的分数增加了，看看是否有人拥有这款游戏。
             m_GameWinner = GetGameWinner();
@@ -165,21 +169,21 @@ namespace Complete
 
 
         // 这是用来检查是否有一个或更少的坦克剩余，从而一轮应该结束。
-        private bool OneTankLeft()
+        private bool RemainTank()
         {
             // 从零开始计算剩下的坦克数量。
-            int numTanksLeft = 0;
+            int remainTank = 0;
 
             // 
             for (int i = 0; i < m_Tank.Length; i++)
             {
                 // 如果它们是活动的，则增加计数器。
                 if (m_Tank[i].m_Instance.activeSelf)
-                    numTanksLeft++;
+                    remainTank++;
             }
 
             // 如果只剩一个或更少的坦克，则返回true，否则返回false。
-            return numTanksLeft <= 1;
+            return remainTank <= 1;
         }
 
 
@@ -207,7 +211,7 @@ namespace Complete
             for (int i = 0; i < m_Tank.Length; i++)
             {
                 // 如果其中一个有足够积分，返回。
-                if (m_Tank[i].m_Wins == m_NumberToWin)
+                if (m_Tank[i].m_WinTime == m_NumberToWin)
                     return m_Tank[i];
             }
 
@@ -220,11 +224,11 @@ namespace Complete
         private string EndMessage()
         {
             // 默认情况下，当一轮结束时没有赢家，所以默认结束消息是平局。
-            string message = "DRAW!";
+            string message = "平局啦!";
 
             // 如果有赢家，那么就改变信息来反映这一点。
             if (m_RoundWinner != null)
-                message = m_RoundWinner.m_ColoredPlayerText + " WINS THE ROUND!";
+                message = m_RoundWinner.m_ColoredPlayerText + " 是本回合赢家!\n太厉害啦!";
 
             // 在初始消息后添加一些换行符。
             message += "\n\n\n\n";
@@ -233,12 +237,12 @@ namespace Complete
             for (int i = 0; i < m_Tank.Length; i++)
             {
                 //通过所有的坦克，并将他们的分数添加到信息中。
-                message += m_Tank[i].m_ColoredPlayerText + ": " + m_Tank[i].m_Wins + " WINS\n";   //（总分信息）
+                message += m_Tank[i].m_ColoredPlayerText + "  :  " + m_Tank[i].m_WinTime + " 回合\n";   //（总分信息）
             }
 
             // 如果游戏中有赢家，那就改变整个信息来反映这一点。
             if (m_GameWinner != null)
-                message = m_GameWinner.m_ColoredPlayerText + " WINS THE GAME!";  //（当前回合信息）
+                message = m_GameWinner.m_ColoredPlayerText + " 获得了本局胜利!";  //（当前回合信息）
 
             return message;
         }
@@ -253,7 +257,7 @@ namespace Complete
             }
         }
 
-
+        //允许玩家操作和启用tank功能
         private void EnableTankControl()
         {
             for (int i = 0; i < m_Tank.Length; i++)
@@ -262,7 +266,7 @@ namespace Complete
             }
         }
 
-
+        //禁止玩家操作和启用tank功能
         private void DisableTankControl()
         {
             for (int i = 0; i < m_Tank.Length; i++)

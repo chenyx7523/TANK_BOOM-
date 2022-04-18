@@ -279,13 +279,14 @@ GameObject:
   - component: {fileID: 840708142}
   - component: {fileID: 840708144}
   - component: {fileID: 840708143}
+  - component: {fileID: 840708145}
   m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &840708142
 RectTransform:
   m_ObjectHideFlags: 0
@@ -326,18 +327,18 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 3d7fe0a26ba72d949874021dc3d6995e, type: 3}
-    m_FontSize: 14
-    m_FontStyle: 0
+    m_FontSize: 20
+    m_FontStyle: 1
     m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 60
     m_Alignment: 4
-    m_AlignByGeometry: 0
+    m_AlignByGeometry: 1
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: "\u6F14\u793A\u6587\u672C"
 --- !u!222 &840708144
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -346,6 +347,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 840708141}
   m_CullTransparentMesh: 0
+--- !u!114 &840708145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 840708141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 4.5, y: -0.81}
+  m_UseGraphicAlpha: 1
 --- !u!1001 &905015798
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -801,8 +817,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_NumberToWin: 5
-  m_StarDelay: 0.5
-  m_EndDelay: 1
+  m_StarTime: 1
+  m_EndTime: 2
   m_CameraManager: {fileID: 1271485964}
   m_Text: {fileID: 840708143}
   m_TankPrefab: {fileID: 1013459266845585946, guid: b7ef53dae4e7f3346a22fc4cf8e691d2,
@@ -813,13 +829,13 @@ MonoBehaviour:
     m_PlayerNumber: 0
     m_ColoredPlayerText: 
     m_Instance: {fileID: 0}
-    m_Wins: 0
+    m_WinTime: 0
   - m_PlayerColor: {r: 0, g: 0.14966917, b: 1, a: 1}
     m_Bron: {fileID: 1559392728}
     m_PlayerNumber: 0
     m_ColoredPlayerText: 
     m_Instance: {fileID: 0}
-    m_Wins: 0
+    m_WinTime: 0
 --- !u!4 &1994387792
 Transform:
   m_ObjectHideFlags: 0
