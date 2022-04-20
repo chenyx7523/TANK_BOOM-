@@ -26,6 +26,8 @@ namespace Complete
         private TankManager m_GameWinner;                     // 比赛胜利者。
 
 
+        [HideInInspector] public int m_SceneNumber;                              //记录一下场景序号
+
         private void Start()
         {
             // 制造延迟
@@ -34,6 +36,8 @@ namespace Complete
 
             AllTank();
             SetCameraTargets();
+            
+            
 
             // 一旦坦克被创造出来，摄像机将它们作为目标，游戏就开始了。(执行协程)
             StartCoroutine(GameLoop());
@@ -90,8 +94,12 @@ namespace Complete
             // 这段代码直到“RoundEnding”完成才会运行。 在这一点上，检查是否找到了游戏赢家。
             if (m_GameWinner != null)
             {
+                //TODO
+                //弹出退出或重新开始窗口
 
-                SceneManager.LoadScene(1);
+                Scene a = SceneManager.GetActiveScene();
+                m_SceneNumber = a.buildIndex;
+                SceneManager.LoadScene(m_SceneNumber);
 
             }
             else
@@ -156,7 +164,7 @@ namespace Complete
             if (m_RoundWinner != null)
                 m_RoundWinner.m_WinTime++;
 
-            //现在胜者的分数增加了，看看是否有人拥有这款游戏。
+            //现在胜者的分数增加了，看看是否有人攒够五次
             m_GameWinner = GetGameWinner();
 
             // 获得基于分数和是否有游戏赢家的消息，并显示它。
@@ -183,7 +191,7 @@ namespace Complete
             }
 
             // 如果只剩一个或更少的坦克，则返回true，否则返回false。
-            return remainTank <= 1;
+            return remainTank <= 1; 
         }
 
 
