@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 namespace Complete
 {
-    public class Manager : MonoBehaviour
+    public class GameManager : MonoBehaviour
     {
         public int m_NumberToWin = 5;                           // 获胜回合数。
         public float m_StarTime = 0.5f;                        // 延迟0.5s后开始。
@@ -117,7 +117,7 @@ namespace Complete
             // 增加整数，并显示文本显示玩家它是多少。
             m_RoundNUm++;
             m_Text.text = "回合 " + m_RoundNUm;
-            Debug.Log("star");
+            //Debug.Log("star");
 
             // 等待指定的时间长度，直到将控制权交还给游戏循环。
             yield return m_StartWait;
@@ -131,7 +131,7 @@ namespace Complete
 
             // 清除屏幕上的文本。
             m_Text.text = string.Empty;
-            Debug.Log("playing");
+            //Debug.Log("playing");
             // 直到没有坦克
             while (!RemainTank())
             {

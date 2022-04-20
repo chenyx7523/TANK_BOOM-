@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/star.unity
     guid: d4ae2d263ed9c764cae568e39852e277
   - enabled: 1
-    path: Assets/Scenes/Game.unity
+    path: Assets/Scenes/Day_Map.unity
     guid: 02b25727a55a02c4fa72730c90653fdb
   m_configObjects: {}
