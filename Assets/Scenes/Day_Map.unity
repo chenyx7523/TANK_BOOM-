@@ -1470,12 +1470,13 @@ MonoBehaviour:
     m_ColoredPlayerText: 
     m_Instance: {fileID: 0}
     m_WinTime: 0
-  - m_PlayerColor: {r: 0, g: 0.14966917, b: 1, a: 0}
+  - m_PlayerColor: {r: 1, g: 0.52359486, b: 0, a: 0}
     m_Bron: {fileID: 1559392728}
     m_PlayerNumber: 0
     m_ColoredPlayerText: 
     m_Instance: {fileID: 0}
     m_WinTime: 0
+  m_SceneNumber: 0
 --- !u!4 &1994387792
 Transform:
   m_ObjectHideFlags: 0

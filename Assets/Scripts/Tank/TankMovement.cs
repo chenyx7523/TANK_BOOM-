@@ -24,11 +24,14 @@ public class TankMovement : MonoBehaviour
     private float m_SonudStar;      //声音起始值
     //private ParticleSystem[] m_ParticleSystem;   //实例化粒子系统
 
-    public GameObject SceneNumber;
-    public GameObject m_TankLight;    //坦克车灯
+    public GameObject SceneNumber;    
     public GameObject m_Canvas;       //其他UI显示
-    public GameObject m_FireCdShow;
-    
+    public GameObject m_FireCdShow;   //坦克炮弹CD
+
+    public GameObject m_TankLight;    //坦克车灯
+    public GameObject m_TankTopLight;
+
+
 
 
     private void Awake()
@@ -156,7 +159,7 @@ public class TankMovement : MonoBehaviour
         m_Rigidbody.MoveRotation(m_Rigidbody.rotation * turnRoation);
     }
 
-
+    //控制坦克灯光
     private void TankLight()
     {
         int ScenenNumber = SceneNumber.GetComponent<SceneNumber>().m_SceneNumber;
@@ -164,10 +167,12 @@ public class TankMovement : MonoBehaviour
         if(ScenenNumber == 1)
         {
             m_TankLight.SetActive(false);
+            m_TankTopLight.SetActive(false);
         }
         else if (ScenenNumber == 2)
         {
             m_TankLight.SetActive(true);
+            m_TankTopLight.SetActive(true);
         }
         
     }
