@@ -13,7 +13,7 @@ namespace Complete
         public float m_StarTime = 0.5f;                        // 延迟0.5s后开始。
         public float m_SuspendWait = 1f;                       //暂停结束后继续执行的时间
         public float m_EndTime = 1f;                           // 延迟1s后进入下一个对局。
-        
+
 
 
         public CameraManager m_CameraManager;                    // 在不同阶段的控制，请参考CameraControl脚本。
@@ -23,12 +23,9 @@ namespace Complete
         public TankManager[] m_Tank;                           // 一组管理器，用于启用和禁用坦克的不同方面。
 
         public GameObject m_SpendPage;                        //暂停页面
+        public GameObject m_SpendTime;                        //倒计时界面
         private bool Suspending;                              //暂停状态
-        /*[HideInInspector]*/ public GameObject SuspendButton;
-        public Text SuspendText;                              //倒计时
-        private float SuspendTime;                            //暂停读数时间
-        private bool SuspendNumberChange;
-        private int SuspendNumber;
+        
 
 
         private int m_RoundNUm = 0;                               // 记录回合数。
@@ -48,7 +45,7 @@ namespace Complete
             //获取当前加载的场景
 
             m_SceneNumber = m_ScenesManager.SceneNumber();
-            
+
 
             AllTank();
             SetCameraTargets();
@@ -66,6 +63,7 @@ namespace Complete
         {
             //是否按下暂停键
             IsRoundSuspend();
+            //SuspendEndbool();
         }
 
 
@@ -333,43 +331,34 @@ namespace Complete
                 }
                 else if (Suspending)  //暂停中,准备结束暂停
                 {
-                    ////关闭按钮显示
-                    //SuspendButton.SetActive(false);
-                    //Debug.Log("关闭按钮显示");
-                    ////倒计时结束后继续游戏
-
-                    //for (int i = 0; i < 3; i++)
-                    //{
-                    //    Invoke("SuspendNnumberUp",10f);
-                    //}
-                    //SuspendNumber=0;
-
-                    //SuspendText.text = string.Empty;
-                    //Debug.Log("跳出循环拉");
                     m_SpendPage.SetActive(false);
-                    Debug.Log("关闭暂停界面");
-                    //SuspendButton.SetActive(true);
-                    //Debug.Log("恢复按钮显示");
-                    //恢复坦克运动
-                    EnableTankControl();
-                    //暂停状态改为false
-                    Suspending = false;
+                    m_SpendTime.SetActive(true);
+                    DisableTankControl();
+
+                    //延时三秒实现恢复坦克运动
+                    Invoke("SuspendEndbool", 3f);
+                    
 
                 }
 
             }
-             
-              
+
+
         }
 
-        //private void SuspendNnumberUp()
-        //{
-        //    SuspendText.text = "倒计时 " + SuspendNumber/*SuspendNumber.ToString()*/;
-        //    SuspendNumber--;
-            
-        //}
+        
 
 
+
+        //恢复坦克运动
+        private void SuspendEndbool()
+        {
+            //恢复坦克运动
+            EnableTankControl();
+            //暂停状态改为false
+            Suspending = false;
+
+        }
 
 
 
