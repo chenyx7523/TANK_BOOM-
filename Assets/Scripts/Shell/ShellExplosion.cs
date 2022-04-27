@@ -44,13 +44,13 @@ public class ShellExplosion : MonoBehaviour
                                                 //中心伤害            位置                 范围
 
             // 找到与刚体相关的TankHealth脚本。
-            TankHealth targetHealth = targetRigidbody.GetComponent<TankHealth>();
+            TankHealth TankHealth = targetRigidbody.GetComponent<TankHealth>();
 
             // 根据目标与炮弹的距离计算出目标应该承受的伤害。
             float amount = MakeDamage(targetRigidbody.position);
 
             //将伤害给坦克
-            targetHealth.TankDamage(amount);   
+            TankHealth.TankDamage(amount);   
 
         }
         // 使爆炸粒子动画没有父物体（直接删除会使得下次无法引用）

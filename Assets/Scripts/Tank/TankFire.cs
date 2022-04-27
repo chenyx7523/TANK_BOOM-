@@ -71,8 +71,9 @@ public class TankFire : MonoBehaviour
             //Debug.Log("Fire");
         }
         UpdateFireTime();
-
         
+
+
         // 开火按钮刚刚开始被按下
         if (Input.GetButtonDown(m_FireButtonName))
         {
@@ -150,7 +151,7 @@ public class TankFire : MonoBehaviour
         // 重置发射部队。这是一种预防措施，以防丢失按钮事件。
         m_UpFireButton = m_MinFire;
     }
-
+    //控制坦克的发射cd的UI显示条
     public void UpdateFireTime()
     {
 
@@ -159,18 +160,9 @@ public class TankFire : MonoBehaviour
         m_FireTimeFillImage.color =
             Color.Lerp(m_ZeroFireTime, m_OneFireTime, m_FireTime / m_ReFireTime);
 
-
-
-
-
-
-
-
-
-
     }
 
-
+    
 
 
 

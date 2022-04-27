@@ -70,7 +70,7 @@ public class TankMovement : MonoBehaviour
 
         //存储原始音频大小，方便后期赋值
         m_SonudStar = m_MoveSound.pitch;
-
+        //开启/关闭灯光
         TankLight();
     }
 

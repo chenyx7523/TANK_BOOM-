@@ -11,12 +11,24 @@ namespace Complete
     {
         public int m_NumberToWin = 5;                           // 获胜回合数。
         public float m_StarTime = 0.5f;                        // 延迟0.5s后开始。
+        public float m_SuspendWait = 1f;                       //暂停结束后继续执行的时间
         public float m_EndTime = 1f;                           // 延迟1s后进入下一个对局。
+        
+
 
         public CameraManager m_CameraManager;                    // 在不同阶段的控制，请参考CameraControl脚本。
+        public ScenesManager m_ScenesManager;
         public Text m_Text;                                    // 参考叠加文本显示获胜文本等。
         public GameObject m_TankPrefab;                        // 参考玩家将控制的预制物。
         public TankManager[] m_Tank;                           // 一组管理器，用于启用和禁用坦克的不同方面。
+
+        public GameObject m_SpendPage;                        //暂停页面
+        private bool Suspending;                              //暂停状态
+        /*[HideInInspector]*/ public GameObject SuspendButton;
+        public Text SuspendText;                              //倒计时
+        private float SuspendTime;                            //暂停读数时间
+        private bool SuspendNumberChange;
+        private int SuspendNumber;
 
 
         private int m_RoundNUm = 0;                               // 记录回合数。
@@ -33,17 +45,28 @@ namespace Complete
             // 制造延迟
             m_StartWait = new WaitForSeconds(m_StarTime);
             m_EndWait = new WaitForSeconds(m_EndTime);
+            //获取当前加载的场景
+
+            m_SceneNumber = m_ScenesManager.SceneNumber();
+            
 
             AllTank();
             SetCameraTargets();
-            
-            
+
+
 
             // 一旦坦克被创造出来，摄像机将它们作为目标，游戏就开始了。(执行协程)
             StartCoroutine(GameLoop());
+            //初始化暂停状态
+            Suspending = false;
+
 
         }
-
+        private void Update()
+        {
+            //是否按下暂停键
+            IsRoundSuspend();
+        }
 
 
         private void AllTank()
@@ -57,10 +80,10 @@ namespace Complete
 
                 m_Tank[i].m_PlayerNumber = i + 1;
                 m_Tank[i].Setup();
-
             }
         }
 
+        //讲坦克的参数传递给跟踪的相机
         private void SetCameraTargets()
         {
             // 创建与坦克数量相同大小的转换集合。
@@ -97,9 +120,6 @@ namespace Complete
                 //TODO
                 //弹出退出或重新开始窗口
 
-                Scene a = SceneManager.GetActiveScene();
-                m_SceneNumber = a.buildIndex;
-                SceneManager.LoadScene(m_SceneNumber);
 
             }
             else
@@ -134,6 +154,7 @@ namespace Complete
 
         private IEnumerator RoundPlaying()
         {
+
             // 当这一轮游戏开始时，让玩家控制坦克。
             EnableTankControl();
 
@@ -148,6 +169,10 @@ namespace Complete
             }
         }
 
+        //private IEnumerator RoundSuspend()
+        //{
+        //    yield return m_SuspendWait;
+        //}
 
         private IEnumerator RoundEnding()
         {
@@ -191,7 +216,7 @@ namespace Complete
             }
 
             // 如果只剩一个或更少的坦克，则返回true，否则返回false。
-            return remainTank <= 1; 
+            return remainTank <= 1;
         }
 
 
@@ -282,6 +307,104 @@ namespace Complete
                 m_Tank[i].DisableControl();
             }
         }
+
+        //    private void test()
+        //    {
+        //        TankHealth testTankHealth = new TankHealth();
+        //        testTankHealth.TankDamage(3f);
+        //        testTankHealth.m_FullHealthColor = Color.green;
+
+        //    }
+
+
+        //控制游戏暂停
+        private void IsRoundSuspend()
+        {
+            //esc被按下，游戏暂停
+            if (Input.GetKeyUp(KeyCode.Escape))
+            {
+                if (!Suspending)
+                {
+                    //暂停坦克控制
+                    DisableTankControl();
+                    //SuspendText.text = string.Empty;
+                    m_SpendPage.SetActive(true);
+                    Suspending = true;
+                }
+                else if (Suspending)  //暂停中,准备结束暂停
+                {
+                    ////关闭按钮显示
+                    //SuspendButton.SetActive(false);
+                    //Debug.Log("关闭按钮显示");
+                    ////倒计时结束后继续游戏
+
+                    //for (int i = 0; i < 3; i++)
+                    //{
+                    //    Invoke("SuspendNnumberUp",10f);
+                    //}
+                    //SuspendNumber=0;
+
+                    //SuspendText.text = string.Empty;
+                    //Debug.Log("跳出循环拉");
+                    m_SpendPage.SetActive(false);
+                    Debug.Log("关闭暂停界面");
+                    //SuspendButton.SetActive(true);
+                    //Debug.Log("恢复按钮显示");
+                    //恢复坦克运动
+                    EnableTankControl();
+                    //暂停状态改为false
+                    Suspending = false;
+
+                }
+
+            }
+             
+              
+        }
+
+        //private void SuspendNnumberUp()
+        //{
+        //    SuspendText.text = "倒计时 " + SuspendNumber/*SuspendNumber.ToString()*/;
+        //    SuspendNumber--;
+            
+        //}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 
 }

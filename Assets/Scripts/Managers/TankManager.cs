@@ -1,8 +1,8 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Complete
-{
+
+
     /*
      * 用来管理坦克的移动和行为
      * 与ganmemanager互动
@@ -38,14 +38,14 @@ namespace Complete
             m_Movement.m_Playernum = m_PlayerNumber;
             m_Fire.m_Playernum = m_PlayerNumber;
 
-            // 根据坦克的颜色和玩家的号码创建一个字符串，使用正确的颜色表示“玩家胜利”的显示字符。
-            m_ColoredPlayerText = "<color=#" + ColorUtility.ToHtmlStringRGB(m_PlayerColor) + ">玩家 " + m_PlayerNumber + "</color>";
+              // 根据坦克的颜色和玩家的号码创建一个字符串，使用正确的颜色表示“玩家胜利”的显示字符。
+              m_ColoredPlayerText = "<color=#" + ColorUtility.ToHtmlStringRGB(m_PlayerColor) + ">玩家 " + m_PlayerNumber + "</color>";
 
-            // 找到坦克的所有3D模型。
-            MeshRenderer[] renderers = m_Instance.GetComponentsInChildren<MeshRenderer>();
+                // 找到坦克的所有3D模型。
+                MeshRenderer[] renderers = m_Instance.GetComponentsInChildren<MeshRenderer>();
 
-            // 浏览所有的模型并附上颜色
-            for (int i = 0; i < renderers.Length; i++)
+        // 浏览所有的模型并附上颜色
+        for (int i = 0; i < renderers.Length; i++)
             {
                 //将他们的材质颜色设置为该玩家特有的颜色。  
                 renderers[i].material.color = m_PlayerColor;
@@ -83,4 +83,3 @@ namespace Complete
             m_Instance.SetActive(true);
         }
     }
-}
