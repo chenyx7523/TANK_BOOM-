@@ -8,6 +8,8 @@ public class ShellExplosion : MonoBehaviour
     public ParticleSystem m_ShellExplosionParticles;        // 子弹爆炸效果的粒子动画。     
     public AudioSource m_ShellExplosionSound;               // 子弹爆炸时播放的音频。
 
+    public Spendpage spendpage;                            //暂停脚本
+
 
     public float m_MaxDamage=100f;                          // 子弹最大伤害。
     public float m_Shock=1000f;                             // 爆炸范围的中心的坦克所承受的冲击波推力。
@@ -22,7 +24,7 @@ public class ShellExplosion : MonoBehaviour
         Destroy(gameObject, m_ShellDisappearTime);    //https://docs.unity.cn/cn/2019.4/ScriptReference/Object.Destroy.html
     }
 
-    //碰撞一旦发生，则调用OnTriggerEnter方法，比FixedUpdate执行次数小 
+    //碰撞事件一旦发生，则调用OnTriggerEnter方法，比FixedUpdate执行次数小  (如果另一个碰撞器进入到子弹触发器中，则调用)
     private void OnTriggerEnter(Collider other)       // Collider  所有碰撞体的基类
     {
         // 收集子弹碰撞范围内的所有碰撞体，生成数组     OverlapSphere   https://docs.unity.cn/cn/2019.4/ScriptReference/Physics.OverlapSphere.html
@@ -50,7 +52,17 @@ public class ShellExplosion : MonoBehaviour
             float amount = MakeDamage(targetRigidbody.position);
 
             //将伤害给坦克
-            TankHealth.TankDamage(amount);   
+            //判断是否暂停   TODO  BUG
+            //Spendpage spendpage = new Spendpage();
+            //if (spendpage.IsSuspending())
+            //{
+            //    amount = 0;
+            //}
+            //else
+            //{
+                
+            //}
+            TankHealth.TankDamage(amount);
 
         }
         // 使爆炸粒子动画没有父物体（直接删除会使得下次无法引用）

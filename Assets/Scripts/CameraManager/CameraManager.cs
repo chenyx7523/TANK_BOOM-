@@ -34,7 +34,7 @@ public class CameraManager : MonoBehaviour
         //移动到目标位置
         //当前位置  目标到达点  参考变量（ref表示将要回到那个变量） 所用时间 Vector3.SmoothDamp  https://docs.unity.cn/cn/2019.4/ScriptReference/Vector3.SmoothDamp.html
         transform.position = Vector3.SmoothDamp(transform.position, m_CameraTargetPosition, ref m_CameraMove, m_DampTime);
-        //当前位置               目标位置             平滑移动      多少时间完成
+        //                                              当前位置               目标位置          平滑移动 (float)   多少时间完成
     }
 
     //获取两个玩家的中心点

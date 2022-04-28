@@ -45,8 +45,10 @@ public class TankMovement : MonoBehaviour
     private void OnEnable()
     {
         //坦克运动状态为false
-        m_Rigidbody.isKinematic = false;
-        
+        //API isKinematic  控制是否受物理影响   如果启用了 isKinematic，则力、碰撞或关节将不再影响刚体。
+        //https://docs.unity.cn/cn/2019.4/ScriptReference/Rigidbody-isKinematic.html
+        m_Rigidbody.isKinematic = false;   
+
         //输入值为0
         m_MoveValue = 0;
         m_TureValue = 0;

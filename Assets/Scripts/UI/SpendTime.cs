@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+//  控制暂停倒计时的显示
 public class SpendTime : ScenesManager
 {
     public Text NumberText;
