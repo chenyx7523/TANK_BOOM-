@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class Spendpage : ScenesManager
 {
-    
-                                   
-    public GameManager gameManager;
+
+
+    //[HideInInspector] public GameManager gameManager;   //暂时弃用
 
     //BUG  TODO  防止暂停后子弹仍有伤害
     //public  bool  IsSuspending()

@@ -24,8 +24,8 @@ namespace Complete
 
         public GameObject m_SpendPage;                        //暂停页面
         public GameObject m_SpendTime;                        //倒计时界面
-        public  bool Suspending;                              //暂停状态
-        public  bool IsEnding;                                //是否在结算界面
+        [HideInInspector] public  bool Suspending;                              //暂停状态
+        [HideInInspector] public  bool IsEnding;                                //是否在结算界面
         
 
 
@@ -34,6 +34,10 @@ namespace Complete
         private WaitForSeconds m_EndWait;                     // 结束后的延迟。
         private TankManager m_RoundWinner;                    // 回合胜利者。
         private TankManager m_GameWinner;                     // 比赛胜利者。
+
+
+        public GameObject m_EndPage;                          //对局结束界面
+        public  Text m_EndText;                               //对局最终信息
 
 
         [HideInInspector] public int m_SceneNumber;                              //记录一下场景序号
@@ -48,7 +52,7 @@ namespace Complete
 
 
             //获取当前加载的场景序号
-
+            
             m_SceneNumber = m_ScenesManager.SceneNumber();
 
             //实例化生成两个坦克
@@ -125,7 +129,9 @@ namespace Complete
             {
                 //TODO
                 //弹出退出或重新开始窗口
-
+                m_Text.text = string.Empty;
+                m_EndText.text = EndMessage();
+                m_EndPage.SetActive(true);
             }
             else
             {
@@ -198,12 +204,14 @@ namespace Complete
             if (m_RoundWinner != null)
                 m_RoundWinner.m_WinTime++;
 
-            //现在胜者的分数增加了，看看是否有人攒够五次
+            //现在胜者的分数增加了，看看是否有人攒够积分
             m_GameWinner = GetGameWinner();
 
-            // 显示最终获胜玩家
-            string message = EndMessage();
+            // 显示回合信息
+            string message = GameMessage();
             m_Text.text = message;
+
+
 
             // 等待指定的时间长度，直到将控制权交还给游戏循环。
             yield return m_EndWait;
@@ -263,13 +271,14 @@ namespace Complete
 
 
         // 返回字符串消息，用于胜利结果显示
-        private string EndMessage()
+        private string GameMessage()
         {
             // 默认情况下，当一轮结束时没有赢家，所以默认结束消息是平局。  若有则被覆盖
                 string message = "平局啦!";
+                
 
-            // 如果有赢家，显示赢家信息    玩家编号 + 是本回合赢家
-            if (m_RoundWinner != null)
+            // 显示赢家信息    玩家编号 + 是本回合赢家
+            
                 message = m_RoundWinner.m_ColoredPlayerText + " 是本回合赢家!\n太厉害啦!";
 
             // 在初始消息后添加一些换行符。
@@ -283,10 +292,19 @@ namespace Complete
             }
 
             // 存在整局赢家，输出赢家编号 + 获得胜利
-            if (m_GameWinner != null)
-                message = m_GameWinner.m_ColoredPlayerText + " 获得了本局胜利!";  //（当前回合信息）
+
 
             return message;
+
+
+
+        }
+        private string EndMessage()
+        {
+
+            string endmessage = m_GameWinner.m_ColoredPlayerText + " 获得了本局胜利!";  
+            return endmessage;
+
         }
 
 

@@ -7,11 +7,11 @@ using UnityEngine.UI;
 //  控制暂停倒计时的显示
 public class SpendTime : ScenesManager
 {
-    public Text NumberText;
-    private float time;
-    public  int Number;
-    private int FirstNumber = 4;
-    public bool timeEnd;
+    [HideInInspector] public Text NumberText;
+    [HideInInspector] private float time;
+    [HideInInspector] public  int Number;
+    [HideInInspector] private int FirstNumber = 4;
+    [HideInInspector] public bool timeEnd;
 
     
 
