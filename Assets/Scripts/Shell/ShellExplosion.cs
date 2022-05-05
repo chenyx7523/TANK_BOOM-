@@ -29,7 +29,7 @@ public class ShellExplosion : MonoBehaviour
     {
         // 收集子弹碰撞范围内的所有碰撞体，生成数组     OverlapSphere   https://docs.unity.cn/cn/2019.4/ScriptReference/Physics.OverlapSphere.html
         Collider[] colliders = Physics.OverlapSphere(transform.position, m_ShellExplosionRadius, m_TankMask);
-                                                   // 爆炸中心              爆炸半径                在那些层查询
+                                                   // 爆炸中心              爆炸半径                在那些层查询(plays)
 
         for(int i = 0; i < colliders.Length; i++)
         {

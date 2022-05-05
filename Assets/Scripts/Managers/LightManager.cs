@@ -58,7 +58,7 @@ public class LightManager : MonoBehaviour
         if (SunValue < 1 && ! SunLight)
         {
             
-            SunValue += Time.deltaTime * SunMoveSpeed;  //可以正常相加
+            SunValue += Time.deltaTime * SunMoveSpeed;  
             if (SunValue >=1)
             {
                 SunLight = true;
@@ -68,7 +68,7 @@ public class LightManager : MonoBehaviour
         {
             
             
-            SunValue -= Time.deltaTime * SunMoveSpeed;  //可以正常减去
+            SunValue -= Time.deltaTime * SunMoveSpeed;  
 
             if (SunValue <= 0)
             {
