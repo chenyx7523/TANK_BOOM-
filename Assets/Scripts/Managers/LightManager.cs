@@ -57,7 +57,6 @@ public class LightManager : MonoBehaviour
 
         if (SunValue < 1 && ! SunLight)
         {
-            
             SunValue += Time.deltaTime * SunMoveSpeed;  
             if (SunValue >=1)
             {
@@ -66,15 +65,11 @@ public class LightManager : MonoBehaviour
         }    
         if(SunLight)
         {
-            
-            
             SunValue -= Time.deltaTime * SunMoveSpeed;  
-
             if (SunValue <= 0)
             {
                 SunLight = false;
             }  
-            
         } 
      
     }

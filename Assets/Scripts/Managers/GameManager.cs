@@ -210,9 +210,6 @@ namespace Complete
             // 显示回合信息
             string message = GameMessage();
             m_Text.text = message;
-
-
-
             // 等待指定的时间长度，直到将控制权交还给游戏循环。
             yield return m_EndWait;
         }
@@ -366,11 +363,9 @@ namespace Complete
 
                     //延时三秒实现--恢复坦克运动
                     Invoke("SuspendEnd", 3f);
-                    
                 }
             }
         }
-
         //结束暂停状态   （在 IsRoundSuspend 中延时三秒调用）
         private void SuspendEnd()
         {
@@ -378,7 +373,6 @@ namespace Complete
             EnableTankControl();
             //暂停状态改为false
             Suspending = false;
-
         }
 
         //是否在暂停中 （弃用，有BUG）

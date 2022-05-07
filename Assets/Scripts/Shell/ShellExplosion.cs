@@ -52,6 +52,9 @@ public class ShellExplosion : MonoBehaviour
             float amount = MakeDamage(targetRigidbody.position);
 
             //将伤害给坦克
+            TankHealth.TankDamage(amount);
+
+
             //判断是否暂停   TODO  BUG
             //Spendpage spendpage = new Spendpage();
             //if (spendpage.IsSuspending())
@@ -60,9 +63,9 @@ public class ShellExplosion : MonoBehaviour
             //}
             //else
             //{
-                
+
             //}
-            TankHealth.TankDamage(amount);
+
 
         }
         // 使爆炸粒子动画没有父物体（直接删除会使得下次无法引用）

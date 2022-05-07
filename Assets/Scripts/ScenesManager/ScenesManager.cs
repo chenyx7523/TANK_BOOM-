@@ -23,7 +23,7 @@ public class ScenesManager : MonoBehaviour
     {
         //判断一下当前所在场景（day or night）
         Scene a = SceneManager.GetActiveScene();
-        ////Debug.Log("Active Scene name is: " + a.name + "\nActive Scene index: " + a.buildIndex); //https://docs.unity.cn/cn/2019.4/ScriptReference/SceneManagement.Scene-buildIndex.html
+        // API  bulidIndex                          https://docs.unity.cn/cn/2019.4/ScriptReference/SceneManagement.Scene-buildIndex.html
         int m_SceneNumber = a.buildIndex;
         return m_SceneNumber;
     }

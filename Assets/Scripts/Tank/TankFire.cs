@@ -17,8 +17,8 @@ public class TankFire : MonoBehaviour
 
     public Slider m_FireTimeSlider;              // 表示坦克冷却滑块。
     public Image m_FireTimeFillImage;            // 滑动块的图像组件。  
-    public Color m_ZeroFireTime;                 //剩余CD为0
-    public Color m_OneFireTime;                  //可以发射的颜色
+    public Color m_ZeroFireTime;                 //剩余CD为0的颜色
+    public Color m_OneFireTime;                  //可以发射的CD的颜色
 
     public float m_MinFire = 20f;             // 初始给予炮弹的力。
     public float m_MaxFire = 40f;              // 在最大充能时间内按动射击按钮给予炮弹的力。
@@ -26,8 +26,8 @@ public class TankFire : MonoBehaviour
 
     public float m_ReFireTime = 2f;        //重新发射的冷却时间
     private string m_FireButtonName;        // 长按发射的输入键（即空格）。
-    private float m_UpFireButton;           // 当发射按钮被释放时，将给予炮弹的力量。
-    //private bool m_UpFireButtonEnabled;     // 判断Fire是否松开
+    private float m_UpFireButtonValue;           // 当发射按钮被释放时，将给予炮弹的力量。
+    //private bool m_UpFireButtonValueEnabled;     // 判断Fire是否松开
     private float m_ChargeSpeed;            // 根据最大充电时间，发射力增加的速度。
     private bool m_FireShoot;               // 是否已经发射。    
     private float m_FireTime;               //上次发射过了多久
@@ -36,7 +36,7 @@ public class TankFire : MonoBehaviour
     private void OnEnable()
     {
         //当坦克启动时，重置发射力和UI 发射状态和发射冷却CD
-        m_UpFireButton = m_MinFire;
+        m_UpFireButtonValue = m_MinFire;
         m_Aim.value = m_MinFire;
         m_FireTimeSlider.value = m_ReFireTime;
         m_FireShoot = false;
@@ -79,10 +79,7 @@ public class TankFire : MonoBehaviour
         {
             //重置发射状态和发射力量。
             m_FireShoot = false;
-            
-            m_UpFireButton = m_MinFire;
-            
-
+            m_UpFireButtonValue = m_MinFire;
             // 播放充能声音
             m_ShootAudio.clip = m_ChargingClip;
             m_ShootAudio.Play();
@@ -91,15 +88,15 @@ public class TankFire : MonoBehaviour
         else if (Input.GetButton(m_FireButtonName) && !m_FireShoot)
         {
             // 增加发射力并更新滑块。
-            if (m_UpFireButton<=m_MaxFire)
+            if (m_UpFireButtonValue<=m_MaxFire)
             {
-                m_UpFireButton += m_ChargeSpeed * Time.deltaTime;
+                m_UpFireButtonValue += m_ChargeSpeed * Time.deltaTime;
             }
             else
             {
-                m_UpFireButton = m_MaxFire;
+                m_UpFireButtonValue = m_MaxFire;
             }
-            m_Aim.value = m_UpFireButton;
+            m_Aim.value = m_UpFireButtonValue;
         }
         // 发射按钮被释放，炮弹还没有发射,使其发射
         else if (Input.GetButtonUp(m_FireButtonName) && !m_FireShoot)
@@ -110,15 +107,12 @@ public class TankFire : MonoBehaviour
                 Fire();
             }
         }
-        // 如果超过了最大力，而炮弹还没有发射,且刚好松开按键
-        else if (m_UpFireButton >= m_MaxFire && !m_FireShoot && !Input.GetButtonUp(m_FireButtonName))
+        // 如果超过了最大力，而炮弹还没有发射,且松开按键
+        else if (m_UpFireButtonValue >= 
+            m_MaxFire && !m_FireShoot && !Input.GetButtonUp(m_FireButtonName))
         {
-            // 当Fire键松开时，用Max力量发射炮弹。
-            //if (m_UpFireButtonEnabled)
-            //{
-                
-            //}
-            m_UpFireButton = m_MaxFire;
+            
+            m_UpFireButtonValue = m_MaxFire;
             //距离上次发射时间==CD，可以发射
             if (m_FireTime == m_ReFireTime)
             {
@@ -132,14 +126,14 @@ public class TankFire : MonoBehaviour
     {
         // 使得状态改为发射了。
         m_FireShoot = true;
-        // 创建一个子弹的实例，并将原来子弹的位置和旋转赋值给新创建的实例，并引用它的刚体。
+        // 创建一个子弹的实例，并将炮口的位置和旋转赋值给新创建的实例，并引用它的刚体。
         Rigidbody ShellInstance =
             Instantiate(m_Shell, m_FireTransform.position, m_FireTransform.rotation);
 
         // 设置炮弹的速度方向为坦克的前进方向。
         //velocity https://docs.unity.cn/cn/2019.4/ScriptReference/Rigidbody-velocity.html
         //  forward   https://docs.unity.cn/cn/2019.4/ScriptReference/Vector3-forward.html   
-        ShellInstance.velocity = m_UpFireButton * m_FireTransform.forward;
+        ShellInstance.velocity = m_UpFireButtonValue * m_FireTransform.forward;
 
         // 改变剪辑射击剪辑并播放它。
         m_ShootAudio.clip = m_FireClip;
@@ -148,8 +142,8 @@ public class TankFire : MonoBehaviour
         //距离上次发射时间清0
         m_FireTime = 0;
 
-        // 重置发射部队。这是一种预防措施，以防丢失按钮事件。
-        m_UpFireButton = m_MinFire;
+        // 重置发射按钮。这是一种预防措施，以防丢失按钮事件。
+        m_UpFireButtonValue = m_MinFire;
     }
 
     //控制坦克的发射cd的UI显示条

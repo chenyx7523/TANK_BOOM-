@@ -76,15 +76,13 @@ public class CameraManager : MonoBehaviour
         m_Camera.orthographicSize = Mathf.SmoothDamp(m_Camera.orthographicSize, TargetsSize, ref m_ZoomSpeed, m_DampTime);
     }                                                    //当前大小               目标大小          平滑缩放       多少时间完成
 
-    //获得一个相机的期望大小并返回（size）  {未理解}
+    //获得一个相机的期望大小并返回（size）  
     private float FindRequiredSize()
     {
         //找到相机在空间中的移动位置            InverseTransformPoint  将 position 从世界空间变换到本地空间。
         Vector3 m_TargetPosition = transform.InverseTransformPoint(m_CameraTargetPosition);
-
         //从0开始相机大小的计算
         float size = 0;
-
         //遍历所有玩家
         for (int i = 0; i < m_Targets.Length; i++)
         {
@@ -94,19 +92,14 @@ public class CameraManager : MonoBehaviour
             Vector3 desiredPosToTarget = playerPos - m_TargetPosition;
             // 从当前的尺寸中选择最大的和坦克“向上”或“向下”距离相机。
             size = Mathf.Max(size, Mathf.Abs(desiredPosToTarget.y));
-            
-
             // 从当前的尺寸和计算的尺寸中选择最大的，基于坦克是在相机的左边还是右边。
             size = Mathf.Max(size, Mathf.Abs(desiredPosToTarget.x) / m_Camera.aspect);   //m_Camera.aspect   宽高比（宽度除以高度）
-            
         }
 
         //给出边缘的空白区域
         size += m_Blank;
-
         //相机最近不会小于的尺寸
         size = Mathf.Max(size, m_MinSize);
-
         return size;
     }
 

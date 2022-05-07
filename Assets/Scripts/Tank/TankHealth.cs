@@ -53,24 +53,21 @@ public class TankHealth : MonoBehaviour
     private void UpdateHealthUI()
     {
         //m_TankCurrentHealth = 30f;
-        // 将当前声明的值赋值给UI滑块。
-        m_TankHealthSlider.value = m_TankCurrentHealth;   
+
         //m_TankHealthSlider.maxValue = m_TankStarHealth;
         //float health = m_TankCurrentHealth / m_TankStarHealth;      /* m_TankCurrentHealth / m_TankStarHealth;*/        
         //m_TankHealthFillImage.fillAmount = health;
 
-        //[BUG]
-
+        
+        // 将当前声明的值赋值给UI滑块。
+        m_TankHealthSlider.value = m_TankCurrentHealth;
         //根据当前血量和满血的百分比，在选定的颜色之间插入条的颜色。
         //Lerp线性插值  https://docs.unity.cn/cn/2019.4/ScriptReference/Color.Lerp.html
 
         m_TankHealthFillImage.color =
             Color.Lerp(m_ZeroHealthColor, m_FullHealthColor, m_TankCurrentHealth / m_TankStarHealth);
 
-        //if (m_TankCurrentHealth <= 33)
-        //{
-        //    m_TankHealthFillImage.color = Color.red;
-        //}
+        
     }
 
 
