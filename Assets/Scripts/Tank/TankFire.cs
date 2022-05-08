@@ -134,6 +134,7 @@ public class TankFire : MonoBehaviour
         //velocity https://docs.unity.cn/cn/2019.4/ScriptReference/Rigidbody-velocity.html
         //  forward   https://docs.unity.cn/cn/2019.4/ScriptReference/Vector3-forward.html   
         ShellInstance.velocity = m_UpFireButtonValue * m_FireTransform.forward;
+        //                              发射速度           起始坐标.向前坐标
 
         // 改变剪辑射击剪辑并播放它。
         m_ShootAudio.clip = m_FireClip;

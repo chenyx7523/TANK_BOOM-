@@ -4,59 +4,101 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-//  控制暂停倒计时的显示
+//  控制暂停倒计时的显示         TODO  用协程方法重构一次
 public class SpendTime : ScenesManager
 {
     [HideInInspector] public Text NumberText;
-    [HideInInspector] private float time;
-    [HideInInspector] public  int Number;
-    [HideInInspector] private int FirstNumber = 4;
-    [HideInInspector] public bool timeEnd;
 
-    
+    [HideInInspector] public int Number;
+    [HideInInspector] private int FirstNumber = 3;
+    [HideInInspector] private WaitForSeconds WaitTime;
 
-    void Awake()
+
+
+    //使用协程重构
+    void OnEnable()
     {
-        time = 1;
-        Number = FirstNumber;
+        Number = FirstNumber + 1;
         NumberText.text = string.Empty;
-        timeEnd = false;
+        WaitTime = new WaitForSeconds(1f);
+        StartCoroutine(CountDown());
+        //Debug.Log("脚本启动");
     }
-    
-    void Update()
+    IEnumerator CountDown()
     {
-        if (Number > 0)
+        yield return StartCoroutine(CountDown1());
+        if (!(Number == 0))
         {
-            if (time < 1)
-            {
-                time += Time.deltaTime;
-            }
-            else if (time >= 1)
-            {
-                Number--;
-                NumberText.text = Number.ToString();
-                time = 0;
-                timeEnd = false;
-            }
+            StartCoroutine(CountDown());
         }
-        if (Number == 0)
+        else
         {
-            timeEnd = true;
-            time = 1;
+
             NumberText.text = string.Empty;
             Number = FirstNumber;
-            timeEnd = false;
             Hide();
-            
         }
-
-
-
-
-
-
-
     }
+
+    IEnumerator CountDown1()
+    {
+        Number--;
+        if (Number == 0)
+        {
+            NumberText.text = "开始！";
+        }
+        else
+        {
+            NumberText.text = Number.ToString();
+        }
+        
+        yield return WaitTime;
+    }
+
+
+
+
+    //[HideInInspector] private float time;
+    //[HideInInspector] public int Number;
+    //[HideInInspector] private int FirstNumber = 4;
+
+    //void Awake()
+    //{
+    //    time = 1;
+    //    Number = FirstNumber;
+    //    NumberText.text = string.Empty;
+    //    Debug.Log("唤醒啦");
+    //}
+    //void Update()
+    //{
+    //    if (Number > 0)
+    //    {
+    //        if (time < 1)
+    //        {
+    //            time += Time.deltaTime;
+    //        }
+    //        else if (time >= 1)
+    //        {
+    //            Number--;
+    //            NumberText.text = Number.ToString();
+    //            time = 0;
+    //        }
+    //    }
+    //    if (Number == 0)
+    //    {
+
+    //        time = 1;
+    //        NumberText.text = string.Empty;
+    //        Number = FirstNumber;
+    //        Hide();
+
+    //    }
+    //}
+
+
+
+
+
 
 
 

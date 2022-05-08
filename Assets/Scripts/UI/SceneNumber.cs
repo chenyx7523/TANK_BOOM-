@@ -9,6 +9,4 @@ public class SceneNumber : ScenesManager
     {
         m_SceneNumber = SceneNumber();
     }
-
-    
 }

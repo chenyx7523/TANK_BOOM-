@@ -43,7 +43,7 @@ public class ShellExplosion : MonoBehaviour
             // 添加爆炸的推力。 API addExplosionForce  向模拟爆炸效果的刚体施加力
             // https://docs.unity.cn/cn/2019.4/ScriptReference/Rigidbody.AddExplosionForce.html
             targetRigidbody.AddExplosionForce(m_MaxDamage*5, transform.position, m_ShellExplosionRadius);
-                                                //中心伤害            位置                 范围
+                                            //力量float（中心伤害）         爆炸中心                 范围
 
             // 找到与刚体相关的TankHealth脚本。
             TankHealth TankHealth = targetRigidbody.GetComponent<TankHealth>();
