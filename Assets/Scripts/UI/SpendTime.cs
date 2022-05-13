@@ -33,7 +33,6 @@ public class SpendTime : ScenesManager
         }
         else
         {
-
             NumberText.text = string.Empty;
             Number = FirstNumber;
             Hide();

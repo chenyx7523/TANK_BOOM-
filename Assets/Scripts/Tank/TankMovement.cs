@@ -14,6 +14,7 @@ public class TankMovement : MonoBehaviour
     public AudioClip m_EngineQuiet;     //引擎静止
     public AudioClip m_EngineDriving;   //驾驶中
     public float m_PitchRange;       //引擎声音变化
+    private float m_SonudStar;      //声音起始值
 
     //其他
     private string m_MoveAxis;      //移动键名称
@@ -21,14 +22,12 @@ public class TankMovement : MonoBehaviour
     private Rigidbody m_Rigidbody;  //坦克刚体
     private float m_MoveValue;      //移动值
     private float m_TureValue;      //转向值
-    private float m_SonudStar;      //声音起始值
-    //private ParticleSystem[] m_ParticleSystem;   //实例化粒子系统
 
-    public GameObject SceneNumber;    
+    /*private ParticleSystem[] m_ParticleSystem; */  //实例化粒子系统
+    public GameObject SceneNumber;    //场景序号
     public GameObject m_Canvas;       //其他UI显示
-
     public GameObject m_TankLight;    //坦克车灯
-    public GameObject m_TankTopLight;
+    public GameObject m_TankTopLight; //坦克顶灯
 
 
 
@@ -40,7 +39,7 @@ public class TankMovement : MonoBehaviour
 
     }
 
-    //激活后执行
+    //每次使用坦克脚本时执行
     private void OnEnable()
     {
         
@@ -50,10 +49,10 @@ public class TankMovement : MonoBehaviour
         //Debug.Log("执行啦");
 
         //输入值为0
-        m_MoveValue = 0;
-        m_TureValue = 0;
+        m_MoveValue = 0f;
+        m_TureValue = 0f;
         //获取粒子系统，初始化粒子系统 TODO
-
+        
     }
 
     private void OnDisable()
@@ -61,14 +60,14 @@ public class TankMovement : MonoBehaviour
         
         m_Rigidbody.isKinematic = true;
 
-        //停止所有粒子效果TODO
+        
     }
 
     private void Start()
     {
         //记录按键操作，并且区分玩家，按键名称管理在 Edit/Project Setting/Input Manager
-        m_MoveAxis = "Vertical" + m_Playernum;
-        m_TurnAxis = "Horizontal" + m_Playernum;
+        m_MoveAxis = "Vertical" + m_Playernum;   //垂直
+        m_TurnAxis = "Horizontal" + m_Playernum; //水平
 
         //存储原始音频大小，方便后期赋值
         m_SonudStar = m_MoveSound.pitch;
@@ -84,8 +83,8 @@ public class TankMovement : MonoBehaviour
 
         //每次输入都将改变坦克运行状态，所以都要进行状态判定来确定播放的音频
         //播放引擎声音 TODO
-        //EnginePlay();
-        
+        EnginePlay();
+
     }
 
 
@@ -114,21 +113,15 @@ public class TankMovement : MonoBehaviour
             if (m_MoveSound.clip == m_EngineDriving)
             {
                 //状态改为空并将声音改为引擎待机声音，给个随机值，使得声音有变化
-                m_MoveSound = null;
                 m_MoveSound.clip = m_EngineQuiet;
-                m_MoveSound.pitch = Random.Range(m_SonudStar - m_PitchRange, m_SonudStar + m_PitchRange);
                 m_MoveSound.Play();
-                
-
             }
         }
         else
         {
-            if (m_MoveSound.clip == m_EngineQuiet)
+            if (m_MoveSound.clip == m_EngineQuiet)//引擎声音为引擎空转
             {
-                m_MoveSound = null;
                 m_MoveSound.clip = m_EngineDriving;
-                m_MoveSound.pitch = Random.Range(m_SonudStar - m_PitchRange, m_SonudStar + m_PitchRange);
                 m_MoveSound.Play();
             }
         }

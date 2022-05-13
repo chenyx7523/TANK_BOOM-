@@ -23,6 +23,7 @@ public class TankFire : MonoBehaviour
     public float m_MinFire = 20f;             // 初始给予炮弹的力。
     public float m_MaxFire = 40f;              // 在最大充能时间内按动射击按钮给予炮弹的力。
     private float m_MaxFireTime = 1f;         // 炮弹最大充能所需时间。
+    private bool m_ChargingClipIsPlaying;     //充能声音是否在播放
 
     public float m_ReFireTime = 2f;        //重新发射的冷却时间
     private string m_FireButtonName;        // 长按发射的输入键（即空格）。
@@ -41,7 +42,9 @@ public class TankFire : MonoBehaviour
         m_FireTimeSlider.value = m_ReFireTime;
         m_FireShoot = false;
         m_FireTime = m_ReFireTime;
-        
+        m_ChargingClipIsPlaying = false;
+
+
     }
 
 
@@ -70,8 +73,11 @@ public class TankFire : MonoBehaviour
             m_FireTime = m_ReFireTime;
             //Debug.Log("Fire");
         }
+        //更新炮弹CD时间
         UpdateFireTime();
-        
+        //控制蓄力声音中断
+        EndPlaym_ChargingClip();
+
 
 
         // 开火按钮刚刚开始被按下
@@ -80,9 +86,7 @@ public class TankFire : MonoBehaviour
             //重置发射状态和发射力量。
             m_FireShoot = false;
             m_UpFireButtonValue = m_MinFire;
-            // 播放充能声音
-            m_ShootAudio.clip = m_ChargingClip;
-            m_ShootAudio.Play();
+            
         }
         //按住了射击键，而炮弹还没有发射
         else if (Input.GetButton(m_FireButtonName) && !m_FireShoot)
@@ -91,6 +95,13 @@ public class TankFire : MonoBehaviour
             if (m_UpFireButtonValue<=m_MaxFire)
             {
                 m_UpFireButtonValue += m_ChargeSpeed * Time.deltaTime;
+                if (m_UpFireButtonValue >= 25f && !m_ChargingClipIsPlaying)
+                {
+                    // 播放充能声音
+                    m_ShootAudio.clip = m_ChargingClip;
+                    m_ShootAudio.Play();
+                    m_ChargingClipIsPlaying = true;
+                }
             }
             else
             {
@@ -101,7 +112,7 @@ public class TankFire : MonoBehaviour
         // 发射按钮被释放，炮弹还没有发射,使其发射
         else if (Input.GetButtonUp(m_FireButtonName) && !m_FireShoot)
         {
-            
+            m_ChargingClipIsPlaying = false;
             if (m_FireTime == m_ReFireTime)
             {
                 Fire();
@@ -126,6 +137,8 @@ public class TankFire : MonoBehaviour
     {
         // 使得状态改为发射了。
         m_FireShoot = true;
+
+          
         // 创建一个子弹的实例，并将炮口的位置和旋转赋值给新创建的实例，并引用它的刚体。
         Rigidbody ShellInstance =
             Instantiate(m_Shell, m_FireTransform.position, m_FireTransform.rotation);
@@ -145,6 +158,17 @@ public class TankFire : MonoBehaviour
 
         // 重置发射按钮。这是一种预防措施，以防丢失按钮事件。
         m_UpFireButtonValue = m_MinFire;
+    }
+
+    //控制蓄力声音中断
+    public void EndPlaym_ChargingClip()
+    {
+        //如果抬起开火键且蓄力声音正在播放
+        if (Input.GetButtonUp(m_FireButtonName)&& m_ChargingClipIsPlaying)
+        {
+            m_ShootAudio.clip = null;  //声音为空
+        }
+        
     }
 
     //控制坦克的发射cd的UI显示条

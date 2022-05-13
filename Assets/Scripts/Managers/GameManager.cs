@@ -362,7 +362,7 @@ namespace Complete
                     DisableTankControl();
 
                     //延时三秒实现--恢复坦克运动
-                    Invoke("SuspendEnd", 3f);
+                    Invoke("SuspendEnd", 4f);
                 }
             }
         }

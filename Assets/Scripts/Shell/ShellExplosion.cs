@@ -8,7 +8,7 @@ public class ShellExplosion : MonoBehaviour
     public ParticleSystem m_ShellExplosionParticles;        // 子弹爆炸效果的粒子动画。     
     public AudioSource m_ShellExplosionSound;               // 子弹爆炸时播放的音频。
 
-    public Spendpage spendpage;                            //暂停脚本
+    /*public Spendpage spendpage;*/                            //暂停脚本
 
 
     public float m_MaxDamage=100f;                          // 子弹最大伤害。
