@@ -9,10 +9,10 @@ namespace Complete
 {
     public class GameManager : MonoBehaviour
     {
-        public int m_NumberToWin = 5;                           // 获胜回合数。
-        public float m_StarTime = 0.5f;                        // 延迟0.5s后开始。
-        public float m_SuspendWait = 1f;                       //暂停结束后继续执行的时间
-        public float m_EndTime = 1f;                           // 延迟1s后进入下一个对局。
+        private int m_NumberToWin = ValueManager.NumberToWin;                           // 获胜回合数。
+        private float m_StarTime = ValueManager.StarTime;                        // 延迟0.5s后开始。
+        private float m_SuspendWait = ValueManager.SuspendWait;                       //暂停结束后继续执行的时间
+        private float m_EndTime = ValueManager.EndTime;                           // 延迟1s后进入下一个对局。
 
 
 
@@ -61,8 +61,9 @@ namespace Complete
             SetCameraTargets();
             //初始化暂停状态
             Suspending = false;
-            float a = ValueManager.testNumber;
-            Debug.Log(a);
+            //float a = ValueManager.Instance.testNumber;
+            //Debug.Log(ValueManager.Instance.testNumber);
+            //Debug.Log(ValueManager.testNumber);
 
 
             // 游戏就开始了。(执行协程)

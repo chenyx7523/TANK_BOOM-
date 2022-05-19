@@ -7,7 +7,8 @@ using UnityEngine.UI;
 public class TankHealth : MonoBehaviour
 {
 
-    public float m_TankStarHealth = 100;            //  每个坦克开始时的生命值。
+    private  float m_TankStarHealth = ValueManager.TankStarHealth;            //  每个坦克开始时的生命值。
+
     public Slider m_TankHealthSlider;              // 表示坦克当前生命值的滑块。
     public Image m_TankHealthFillImage;            // 滑动块的图像组件。  
     public Color m_FullHealthColor = Color.green;  // 当生命值满时，生命条的颜色。
@@ -30,11 +31,9 @@ public class TankHealth : MonoBehaviour
         m_TankDeathAudio = m_TankDeathParticle.GetComponent<AudioSource>();
 
         //禁用预制件，这样它就可以在需要的时候被激活。 
-        m_TankDeathParticle.gameObject.SetActive(false);    
-
+        m_TankDeathParticle.gameObject.SetActive(false);
+        //Debug.Log(m_TankStarHealth);
     }
-
-
 
     private void OnEnable()
     {   
@@ -45,31 +44,6 @@ public class TankHealth : MonoBehaviour
         // 更新运行状况滑块的值和颜色。
         UpdateHealthUI();
     }
-
-  
-
-
-    // 更新运行状况滑块的值和颜色。
-    private void UpdateHealthUI()
-    {
-        //m_TankCurrentHealth = 30f;
-
-        //m_TankHealthSlider.maxValue = m_TankStarHealth;
-        //float health = m_TankCurrentHealth / m_TankStarHealth;      /* m_TankCurrentHealth / m_TankStarHealth;*/        
-        //m_TankHealthFillImage.fillAmount = health;
-
-        
-        // 将当前声明的值赋值给UI滑块。
-        m_TankHealthSlider.value = m_TankCurrentHealth;
-        //根据当前血量和满血的百分比，在选定的颜色之间插入条的颜色。
-        //Lerp线性插值  https://docs.unity.cn/cn/2019.4/ScriptReference/Color.Lerp.html
-
-        m_TankHealthFillImage.color =
-            Color.Lerp(m_ZeroHealthColor, m_FullHealthColor, m_TankCurrentHealth / m_TankStarHealth);
-
-        
-    }
-
 
     //坦克受伤
     public void TankDamage(float amount)        //amount 即为收到的伤害值
@@ -89,7 +63,6 @@ public class TankHealth : MonoBehaviour
         }
 
     }
-
 
 
     private void TankDeath()
@@ -112,11 +85,19 @@ public class TankHealth : MonoBehaviour
         //GameObject.Find("ScenesManager").GetComponent<ScenesManager>().Invoke("GameRestar", 1);  //Invoke 延时1s调用GameRestar（）方法
         //目标类挂载的对象名称              //类名           //方法名
 
-
-
     }
 
-    
+    // 更新运行状况滑块的值和颜色。
+    private void UpdateHealthUI()
+    {
+        // 将当前声明的值赋值给UI滑块。
+        m_TankHealthSlider.value = m_TankCurrentHealth;
+        //根据当前血量和满血的百分比，在选定的颜色之间插入条的颜色。
+        //Lerp线性插值  https://docs.unity.cn/cn/2019.4/ScriptReference/Color.Lerp.html
+        m_TankHealthFillImage.color =
+            Color.Lerp(m_ZeroHealthColor, m_FullHealthColor, m_TankCurrentHealth / m_TankStarHealth);
+    }
+
 
 
 

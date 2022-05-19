@@ -7,7 +7,7 @@ public class test : MonoBehaviour
     // Start is called before the first frame update
     //void Start()
     //{
-        
+
     //}
 
     //// Update is called once per frame
@@ -21,6 +21,11 @@ public class test : MonoBehaviour
     //{
     //    gameObject.SetActive(false);    
     //}
-
+    [HideInInspector]public float a = 5f;
+    [HideInInspector] public float b = 30f;
+    public void OnEnable()
+    {
+        Debug.Log(b);
+    }
 
 }

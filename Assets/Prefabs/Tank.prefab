@@ -642,7 +642,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4584cf2835df4d24495c9ed4db86b42b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_TankStarHealth: 100
+  m_TankStarHealth: 50
   m_TankHealthSlider: {fileID: 1879406653435356170}
   m_TankHealthFillImage: {fileID: 4451245644310223183}
   m_FullHealthColor: {r: 0.29803923, g: 0.8392157, b: 0.29803923, a: 0.78431374}

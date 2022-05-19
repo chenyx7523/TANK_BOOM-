@@ -11,7 +11,7 @@ public class LightManager : MonoBehaviour
     public GameObject SceneNumber;
 
     private bool SunLight;    //是否由太阳光
-    public float SunMoveSpeed=0.05f; //太阳移动速度
+    public float m_SunMoveSpeed=ValueManager.SunMoveSpeed; //太阳移动速度
     [HideInInspector]private float SunValue;
 
 
@@ -57,7 +57,7 @@ public class LightManager : MonoBehaviour
 
         if (SunValue < 1 && ! SunLight)
         {
-            SunValue += Time.deltaTime * SunMoveSpeed;  
+            SunValue += Time.deltaTime * m_SunMoveSpeed;  
             if (SunValue >=1)
             {
                 SunLight = true;
@@ -65,7 +65,7 @@ public class LightManager : MonoBehaviour
         }    
         if(SunLight)
         {
-            SunValue -= Time.deltaTime * SunMoveSpeed;  
+            SunValue -= Time.deltaTime * m_SunMoveSpeed;  
             if (SunValue <= 0)
             {
                 SunLight = false;

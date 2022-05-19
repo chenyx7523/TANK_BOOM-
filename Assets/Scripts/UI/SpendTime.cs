@@ -10,7 +10,7 @@ public class SpendTime : ScenesManager
     [HideInInspector] public Text NumberText;
 
     [HideInInspector] public int Number;
-    [HideInInspector] private int FirstNumber = 3;
+    [HideInInspector] private int m_FirstNumber = ValueManager.FirstNumber;           //暂停倒计时从几开始
     [HideInInspector] private WaitForSeconds WaitTime;
 
 
@@ -18,7 +18,7 @@ public class SpendTime : ScenesManager
     //使用协程重构
     void OnEnable()
     {
-        Number = FirstNumber + 1;
+        Number = m_FirstNumber + 1;
         NumberText.text = string.Empty;
         WaitTime = new WaitForSeconds(1f);
         StartCoroutine(CountDown());
@@ -34,7 +34,7 @@ public class SpendTime : ScenesManager
         else
         {
             NumberText.text = string.Empty;
-            Number = FirstNumber;
+            Number = m_FirstNumber;
             Hide();
         }
     }

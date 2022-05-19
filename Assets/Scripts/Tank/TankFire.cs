@@ -7,7 +7,7 @@ using UnityEngine.UI;
 //控制坦克的子弹和爆炸
 public class TankFire : MonoBehaviour
 {
-    public int m_Playernum;              // 用来识别不同的玩家。
+    public int m_Playernum;                  // 用来识别不同的玩家。
     public Rigidbody m_Shell;                // 实例化预制体。
     public Transform m_FireTransform;        // 发射炮弹的坐标
     public Slider m_Aim;                     // 实例化滑块
@@ -20,15 +20,15 @@ public class TankFire : MonoBehaviour
     public Color m_ZeroFireTime;                 //剩余CD为0的颜色
     public Color m_OneFireTime;                  //可以发射的CD的颜色
 
-    public float m_MinFire = 20f;             // 初始给予炮弹的力。
-    public float m_MaxFire = 40f;              // 在最大充能时间内按动射击按钮给予炮弹的力。
-    private float m_MaxFireTime = 1f;         // 炮弹最大充能所需时间。
-    private bool m_ChargingClipIsPlaying;     //充能声音是否在播放
+    private float m_MinFire = ValueManager.MinFire;              // 初始给予炮弹的力。
+    private float m_MaxFire = ValueManager.MaxFire;              // 在最大充能时间内按动射击按钮给予炮弹的力。
+    private float m_MaxFireTime = ValueManager.MaxFireTime;     // 炮弹最大充能所需时间。
+    private bool m_ChargingClipIsPlaying;                       //充能声音是否在播放
 
-    public float m_ReFireTime = 2f;        //重新发射的冷却时间
-    private string m_FireButtonName;        // 长按发射的输入键（即空格）。
-    private float m_UpFireButtonValue;           // 当发射按钮被释放时，将给予炮弹的力量。
-    //private bool m_UpFireButtonValueEnabled;     // 判断Fire是否松开
+    private float m_ReFireTime = ValueManager.ReFireTime;        //重新发射的冷却时间
+    private string m_FireButtonName;                            // 长按发射的输入键（即空格）。
+    private float m_UpFireButtonValue;                          // 当发射按钮被释放时，将给予炮弹的力量。
+    //private bool m_UpFireButtonValueEnabled;                  // 判断Fire是否松开
     private float m_ChargeSpeed;            // 根据最大充电时间，发射力增加的速度。
     private bool m_FireShoot;               // 是否已经发射。    
     private float m_FireTime;               //上次发射过了多久
