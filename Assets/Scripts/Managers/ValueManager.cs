@@ -8,7 +8,7 @@ public class ValueManager : MonoBehaviour
     public static ValueManager instance;
 
     #region    游戏管理数据
-    public static int NumberToWin = 2;                           // 获胜回合数。
+    public static int NumberToWin = 3;                           // 获胜回合数。
     public static float StarTime = 0.5f;                        // 延迟0.5s后开始。
     public static float SuspendWait = 1f;                       //暂停结束后继续执行的时间
     public static float EndTime = 1f;                           // 延迟1s后进入下一个对局。

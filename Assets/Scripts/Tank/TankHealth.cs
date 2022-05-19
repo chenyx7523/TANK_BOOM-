@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class TankHealth : MonoBehaviour
 {
 
-    private  float m_TankStarHealth = ValueManager.TankStarHealth;            //  每个坦克开始时的生命值。
+    private  float m_TankStarHealth;            //  每个坦克开始时的生命值。
 
     public Slider m_TankHealthSlider;              // 表示坦克当前生命值的滑块。
     public Image m_TankHealthFillImage;            // 滑动块的图像组件。  
@@ -36,8 +36,9 @@ public class TankHealth : MonoBehaviour
     }
 
     private void OnEnable()
-    {   
+    {
         // 当被启用时，重置坦克的健康状况以及死亡状态。
+        m_TankStarHealth = ValueManager.TankStarHealth;
         m_TankCurrentHealth = m_TankStarHealth;
         m_TankIsDead = false;
 

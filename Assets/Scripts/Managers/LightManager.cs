@@ -11,7 +11,7 @@ public class LightManager : MonoBehaviour
     public GameObject SceneNumber;
 
     private bool SunLight;    //是否由太阳光
-    public float m_SunMoveSpeed=ValueManager.SunMoveSpeed; //太阳移动速度
+    public float m_SunMoveSpeed; //太阳移动速度
     [HideInInspector]private float SunValue;
 
 
@@ -22,7 +22,7 @@ public class LightManager : MonoBehaviour
     void Start()
     {
         //实例化太阳灯
-
+        m_SunMoveSpeed = ValueManager.SunMoveSpeed;
 
         SunLight = false;
         //LampLight();

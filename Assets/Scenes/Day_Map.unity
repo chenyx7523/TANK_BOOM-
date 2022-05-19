@@ -1974,7 +1974,7 @@ PrefabInstance:
     - target: {fileID: 8823616884762709087, guid: d56b605f7197eb948820cdbc9bdaefad,
         type: 3}
       propertyPath: m_NumberToWin
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8823616884762709087, guid: d56b605f7197eb948820cdbc9bdaefad,
         type: 3}
@@ -1986,6 +1986,16 @@ PrefabInstance:
       propertyPath: m_ScenesManager
       value: 
       objectReference: {fileID: 906150466}
+    - target: {fileID: 8823616884762709087, guid: d56b605f7197eb948820cdbc9bdaefad,
+        type: 3}
+      propertyPath: m_Tank.Array.data[0].red
+      value: 
+      objectReference: {fileID: 2100000, guid: be2ef26c00fd5ac4fafddd4c30895e64, type: 2}
+    - target: {fileID: 8823616884762709087, guid: d56b605f7197eb948820cdbc9bdaefad,
+        type: 3}
+      propertyPath: m_Tank.Array.data[0].blue
+      value: 
+      objectReference: {fileID: 2100000, guid: 2bb78c64528360f47a13a43ba4790e14, type: 2}
     - target: {fileID: 8823616884762709087, guid: d56b605f7197eb948820cdbc9bdaefad,
         type: 3}
       propertyPath: m_Tank.Array.data[0].m_Bron

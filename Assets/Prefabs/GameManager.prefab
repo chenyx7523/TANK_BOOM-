@@ -55,12 +55,14 @@ MonoBehaviour:
     type: 3}
   m_Tank:
   - m_PlayerColor: {r: 1, g: 0, b: 0, a: 1}
+    m_PlayerMaterial: {fileID: 2100000, guid: 463052f3f7389124f9e7b34b0b931d0d, type: 2}
     m_Bron: {fileID: 0}
     m_PlayerNumber: 0
     m_ColoredPlayerText: 
     m_Instance: {fileID: 0}
     m_WinTime: 0
-  - m_PlayerColor: {r: 1, g: 0.52359486, b: 0, a: 0}
+  - m_PlayerColor: {r: 0, g: 1, b: 0.24035454, a: 0}
+    m_PlayerMaterial: {fileID: 2100000, guid: c39933e60e73205419d1f79a2af1fdac, type: 2}
     m_Bron: {fileID: 0}
     m_PlayerNumber: 0
     m_ColoredPlayerText: 

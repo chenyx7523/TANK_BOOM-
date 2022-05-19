@@ -13,7 +13,9 @@ public class TankManager
 {
 
 
-    public Color m_PlayerColor;                             // 这是这个坦克将要生成的颜色。
+    public Color m_PlayerColor;                             // 玩家颜色。
+    public Material m_PlayerMaterial;                       //玩家材质
+
     public Transform m_Bron;                                // 坦克出生的位置和方向。
 
     [HideInInspector] public int m_PlayerNumber;            // 用来指定玩家。
@@ -24,8 +26,7 @@ public class TankManager
 
     private TankMovement m_Movement;                        // 参考坦克的移动脚本，用于禁用和启用控制。
     private TankFire m_Fire;                                // 参考坦克的射击脚本，用于禁用和启用控制。
-    /*private GameObject m_CanvasGameObject;  */                // 用于在每个回合的开始和结束阶段禁用世界空间UI。
-
+    
     //初始化（位置，颜色等）
     public void Setup()
     {
@@ -37,14 +38,16 @@ public class TankManager
         m_Fire.m_Playernum = m_PlayerNumber;
         // 使用html富文本创建一个字符串
         //使得玩家代号颜色为玩家颜色
-        m_ColoredPlayerText = "<color=#" + ColorUtility.ToHtmlStringRGB(m_PlayerColor) + ">玩家 " + m_PlayerNumber + "</color>";
+        m_ColoredPlayerText ="<color=#" + ColorUtility.ToHtmlStringRGB(m_PlayerColor) + ">玩家 " + m_PlayerNumber + "</color>";
         // 找到坦克的网格渲染组件。       renderers 为实例化后的tank的子对象的所有渲染网格
         MeshRenderer[] renderers = m_Instance.GetComponentsInChildren<MeshRenderer>();
         // 浏览所有的子模型网格Mesh并附上颜色
         for (int i = 0; i < renderers.Length; i++)
         {
             //将他们的材质颜色设置为该玩家特有的颜色。  
-            renderers[i].material.color = m_PlayerColor;
+            //renderers[i].GetComponent<MeshRenderer>().sharedMaterial = nill;
+            renderers[i].GetComponent<MeshRenderer>().sharedMaterial = m_PlayerMaterial;
+
 
             //TODO
             /*改变材质包

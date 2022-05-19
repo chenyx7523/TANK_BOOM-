@@ -6,8 +6,8 @@ public class TankMovement : MonoBehaviour
 {
     //移动
     public int m_Playernum;           // 用来识别哪个坦克属于哪个玩家  
-    private float m_Speed = ValueManager.TankSpeed;              // 坦克的速度配置 
-    private float m_TurnSpeed= ValueManager.TurnSpeed;        // 坦克的旋转速度 
+    [ReadOnly]public  float m_Speed;              // 坦克的速度配置 
+    [ReadOnly]public  float m_TurnSpeed;        // 坦克的旋转速度 
 
     //声音
     public AudioSource m_MoveSound;          // 引擎音源 
@@ -32,35 +32,32 @@ public class TankMovement : MonoBehaviour
 
 
 
-    private void Awake()
-    {
-        m_Rigidbody = GetComponent<Rigidbody>();
-        
-
-    }
+   
 
     //每次使用坦克脚本时执行
     private void OnEnable()
     {
-        
+        m_Speed = ValueManager.TankSpeed;              // 坦克的速度配置 
+        m_TurnSpeed = ValueManager.TurnSpeed;        // 坦克的旋转速度
+        m_Rigidbody = GetComponent<Rigidbody>();
         //API isKinematic  控制是否受物理影响   如果启用了 isKinematic，则力、碰撞或关节将不再影响刚体。
         //https://docs.unity.cn/cn/2019.4/ScriptReference/Rigidbody-isKinematic.html
         m_Rigidbody.isKinematic = false;
         //Debug.Log("执行啦");
-
         //输入值为0
         m_MoveValue = 0f;
         m_TureValue = 0f;
-        //获取粒子系统，初始化粒子系统 TODO
+
         
+
     }
 
     private void OnDisable()
     {
-        
+
         m_Rigidbody.isKinematic = true;
 
-        
+
     }
 
     private void Start()
@@ -155,7 +152,7 @@ public class TankMovement : MonoBehaviour
     {
         int ScenenNumber = SceneNumber.GetComponent<SceneNumber>().m_SceneNumber;
         //Debug.Log(ScenenNumber);
-        if(ScenenNumber == 1)
+        if (ScenenNumber == 1)
         {
             m_TankLight.SetActive(false);
             m_TankTopLight.SetActive(false);
@@ -165,7 +162,7 @@ public class TankMovement : MonoBehaviour
             m_TankLight.SetActive(true);
             m_TankTopLight.SetActive(true);
         }
-        
+
     }
 
 

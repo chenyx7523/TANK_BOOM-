@@ -20,10 +20,10 @@ public class TankFire : MonoBehaviour
     public Color m_ZeroFireTime;                 //剩余CD为0的颜色
     public Color m_OneFireTime;                  //可以发射的CD的颜色
 
-    private float m_MinFire = ValueManager.MinFire;              // 初始给予炮弹的力。
-    private float m_MaxFire = ValueManager.MaxFire;              // 在最大充能时间内按动射击按钮给予炮弹的力。
-    private float m_MaxFireTime = ValueManager.MaxFireTime;     // 炮弹最大充能所需时间。
-    private bool m_ChargingClipIsPlaying;                       //充能声音是否在播放
+    public  float m_MinFire;              // 初始给予炮弹的力。
+    public float m_MaxFire;              // 在最大充能时间内按动射击按钮给予炮弹的力。
+    public float m_MaxFireTime;     // 炮弹最大充能所需时间。
+    public bool m_ChargingClipIsPlaying;                       //充能声音是否在播放
 
     private float m_ReFireTime = ValueManager.ReFireTime;        //重新发射的冷却时间
     private string m_FireButtonName;                            // 长按发射的输入键（即空格）。
@@ -36,6 +36,11 @@ public class TankFire : MonoBehaviour
 
     private void OnEnable()
     {
+        m_MinFire = ValueManager.MinFire;
+        m_MaxFire = ValueManager.MaxFire;
+        m_MaxFireTime = ValueManager.MaxFireTime;
+        m_ReFireTime = ValueManager.ReFireTime;
+
         //当坦克启动时，重置发射力和UI 发射状态和发射冷却CD
         m_UpFireButtonValue = m_MinFire;
         m_Aim.value = m_MinFire;

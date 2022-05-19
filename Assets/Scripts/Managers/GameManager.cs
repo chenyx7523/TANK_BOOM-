@@ -9,10 +9,10 @@ namespace Complete
 {
     public class GameManager : MonoBehaviour
     {
-        private int m_NumberToWin = ValueManager.NumberToWin;                           // 获胜回合数。
-        private float m_StarTime = ValueManager.StarTime;                        // 延迟0.5s后开始。
-        private float m_SuspendWait = ValueManager.SuspendWait;                       //暂停结束后继续执行的时间
-        private float m_EndTime = ValueManager.EndTime;                           // 延迟1s后进入下一个对局。
+        [ReadOnly] public int m_NumberToWin;                           // 获胜回合数。
+        [ReadOnly] public float m_StarTime;                        // 延迟0.5s后开始。
+        [ReadOnly] public float m_SuspendWait;                       //暂停结束后继续执行的时间
+        [ReadOnly] public float m_EndTime;                           // 延迟1s后进入下一个对局。
 
 
 
@@ -24,12 +24,12 @@ namespace Complete
 
         public GameObject m_SpendPage;                        //暂停页面
         public GameObject m_SpendTime;                        //倒计时界面
-        [HideInInspector] public  bool Suspending;                              //暂停状态
-        [HideInInspector] public  bool IsEnding;                                //是否在结算界面
-        
+        [HideInInspector] public bool Suspending;                              //暂停状态
+        [HideInInspector] public bool IsEnding;                                //是否在结算界面
 
 
-        private int m_RoundNUm = 0;                               // 记录回合数。
+
+        private int m_RoundNUm = 0;                           // 记录回合数。
         private WaitForSeconds m_StartWait;                   // 开始时的延迟延迟。     WaitForSeconds     https://docs.unity.cn/cn/2019.4/ScriptReference/WaitForSeconds.html
         private WaitForSeconds m_EndWait;                     // 结束后的延迟。
         private TankManager m_RoundWinner;                    // 回合胜利者。
@@ -37,13 +37,18 @@ namespace Complete
 
 
         public GameObject m_EndPage;                          //对局结束界面
-        public  Text m_EndText;                               //对局最终信息
+        public Text m_EndText;                               //对局最终信息
 
 
-        [HideInInspector] public int m_SceneNumber;                              //记录一下场景序号
+        [HideInInspector] public int m_SceneNumber;          //记录一下场景序号
 
         private void Start()
         {
+            m_NumberToWin = ValueManager.NumberToWin;
+            m_StarTime = ValueManager.StarTime;
+            m_SuspendWait = ValueManager.SuspendWait;
+            m_EndTime = ValueManager.EndTime;
+
             // 初始化延迟
             //API waitForSeconds   延迟执行协程
             //https://docs.unity.cn/cn/2019.4/ScriptReference/WaitForSeconds.html
