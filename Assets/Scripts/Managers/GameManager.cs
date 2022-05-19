@@ -61,7 +61,8 @@ namespace Complete
             SetCameraTargets();
             //初始化暂停状态
             Suspending = false;
-
+            float a = ValueManager.testNumber;
+            Debug.Log(a);
 
 
             // 游戏就开始了。(执行协程)
