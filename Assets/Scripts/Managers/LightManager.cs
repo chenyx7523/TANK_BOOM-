@@ -52,11 +52,11 @@ public class LightManager : MonoBehaviour
     //}
 
     void SunUp()
-    {
+    {  //获取光照强度组件
         Sun.GetComponent<Light>().intensity = SunValue;
 
         if (SunValue < 1 && ! SunLight)
-        {
+        {   //更改光照值并附加当前光照状态
             SunValue += Time.deltaTime * m_SunMoveSpeed;  
             if (SunValue >=1)
             {

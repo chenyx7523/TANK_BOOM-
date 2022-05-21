@@ -6,8 +6,8 @@ public class TankMovement : MonoBehaviour
 {
     //移动
     public int m_Playernum;           // 用来识别哪个坦克属于哪个玩家  
-    [ReadOnly]public  float m_Speed;              // 坦克的速度配置 
-    [ReadOnly]public  float m_TurnSpeed;        // 坦克的旋转速度 
+    /*[ReadOnly]*/public  float m_Speed;              // 坦克的速度配置 
+    /*[ReadOnly]*/public  float m_TurnSpeed;        // 坦克的旋转速度 
 
     //声音
     public AudioSource m_MoveSound;          // 引擎音源 

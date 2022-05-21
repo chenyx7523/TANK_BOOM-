@@ -9,10 +9,10 @@ namespace Complete
 {
     public class GameManager : MonoBehaviour
     {
-        [ReadOnly] public int m_NumberToWin;                           // 获胜回合数。
-        [ReadOnly] public float m_StarTime;                        // 延迟0.5s后开始。
-        [ReadOnly] public float m_SuspendWait;                       //暂停结束后继续执行的时间
-        [ReadOnly] public float m_EndTime;                           // 延迟1s后进入下一个对局。
+        /*[ReadOnly]*/ public int m_NumberToWin;                           // 获胜回合数。
+        /*[ReadOnly]*/ public float m_StarTime;                        // 延迟0.5s后开始。
+        /*[ReadOnly]*/ public float m_SuspendWait;                       //暂停结束后继续执行的时间
+        /*[ReadOnly]*/ public float m_EndTime;                           // 延迟1s后进入下一个对局。
 
 
 
@@ -283,29 +283,18 @@ namespace Complete
 
             // 显示赢家信息    玩家编号 + 是本回合赢家
             
-                message = m_RoundWinner.m_ColoredPlayerText + " 是本回合赢家!\n太厉害啦!";
-
-            // 在初始消息后添加一些换行符。
-            message += "\n\n\n\n";
-
-
+                message = "\n\n\n" + m_RoundWinner.m_ColoredPlayerText + " 是本回合赢家!\n太厉害啦!"+ "\n\n\n\n";
             for (int i = 0; i < m_Tank.Length; i++)
             {
                 //通过所有的坦克，并将他们的分数添加到信息中。
-                message += m_Tank[i].m_ColoredPlayerText + "  :  " + m_Tank[i].m_WinTime + " 回合\n";   //（总分信息）
+                message += m_Tank[i].m_ColoredPlayerText + " 获得  ： " + m_Tank[i].m_WinTime + " 积分\n";   //（总分信息）
             }
 
-            // 存在整局赢家，输出赢家编号 + 获得胜利
-
-
             return message;
-
-
 
         }
         private string EndMessage()
         {
-
             string endmessage = m_GameWinner.m_ColoredPlayerText + " 获得了本局胜利!";  
             return endmessage;
 

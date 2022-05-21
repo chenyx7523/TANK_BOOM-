@@ -1,22 +1,22 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿//using System.Collections;
+//using System.Collections.Generic;
+//using UnityEngine;
 
-public class test : MonoBehaviour
-{
+//public class test : MonoBehaviour
+//{
     
 
-    [ReadOnly]
-    public float a = 10f;
-    [ReadOnly]
-    public Color color = Color.blue;
+//    [ReadOnly]
+//    public float a = 10f;
+//    [ReadOnly]
+//    public Color color = Color.blue;
 
-    [HideInInspector] public float b = 30f;
+//    [HideInInspector] public float b = 30f;
 
 
-    public void Awake()
-    {
-        Debug.Log(a);
-    }
+//    public void Awake()
+//    {
+//        Debug.Log(a);
+//    }
 
-}
+//}
